@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyAsset Finance — Compare 50+ lenders. One form. No credit hit.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --forest:#107040;
+  --green-deep:#14B866;
+  --green:#2AF48F;
+  --mint-200:#83FFC1;
+  --mint-100:#B3FFD9;
+  --mint-50:#DBFFED;
+
+  --ink:#0c1f14;
+  --ink-soft:#47655a;
+  --paper:#ffffff;
+  --paper-tint:#f4faf6;
+  --line:#e2efe7;
+  --btn-text:#08160d;
+
+  --hero-1:#107040;
+  --hero-2:#0b5030;
+
+  --shadow-sm:0 1px 2px rgba(12,31,20,.06), 0 6px 16px -10px rgba(24,98,49,.18);
+  --shadow-md:0 14px 34px -16px rgba(24,98,49,.32);
+  --shadow-lg:0 36px 70px -28px rgba(10,52,26,.55);
+
+  --r-card:14px;
+  --r-pill:12px;
+  --wrap:1260px;
+  --nav-h:72px;
+
+  --f-display:"Bricolage Grotesque",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--f-body);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(1.25rem,5vw,2.5rem)}
+.section{padding-block:clamp(3.25rem,5.5vw,5rem);scroll-margin-top:90px}
+.section--tint{background:var(--paper-tint)}
+.section--tight{padding-block:clamp(1.5rem,3.5vw,2.5rem)}
+.section--mint{background:var(--mint-50)}
+.section--forest{background:linear-gradient(160deg,var(--hero-1),var(--hero-2));color:#eafff1}
+
+/* ============ TYPE ============ */
+h1,h2,h3,.display{font-family:var(--f-display);font-weight:700;line-height:1.04;letter-spacing:-.02em;color:var(--forest)}
+.section--forest h2,.section--forest h3{color:#fff}
+.eyebrow{
+  font-family:var(--f-mono);font-weight:600;font-size:.72rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--forest);display:inline-flex;gap:.6rem;align-items:center
+}
+.section--forest .eyebrow,.hero .eyebrow{color:var(--mint-200)}
+.eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.6}
+.lead{font-size:clamp(1.04rem,1.5vw,1.22rem);color:var(--ink-soft);max-width:54ch}
+.section--forest .lead{color:#cdefd9}
+h2{font-size:clamp(2rem,4vw,3.05rem)}
+.sec-head{max-width:60ch}
+.sec-head h2{margin:.7rem 0 .9rem}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  font-weight:700;font-size:1rem;border-radius:var(--r-pill);
+  padding:.95rem 1.6rem;transition:transform .15s ease,box-shadow .2s ease,background .2s ease;
+  white-space:nowrap;
+}
+.btn--primary{background:var(--green);color:var(--btn-text);box-shadow:0 10px 24px -10px rgba(42,244,143,.7)}
+.btn--primary:hover{background:#14B866;transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(42,244,143,.8)}
+.btn--ghost{background:transparent;color:var(--forest);box-shadow:inset 0 0 0 1.5px var(--forest)}
+.btn--ghost:hover{background:var(--mint-50)}
+.section--forest .btn--ghost{color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55)}
+.section--forest .btn--ghost:hover{background:rgba(255,255,255,.1)}
+.btn--block{width:100%}
+.btn--lg{padding:1.1rem 1.9rem;font-size:1.05rem}
+
+:focus-visible{outline:2.5px solid var(--green);outline-offset:3px;border-radius:6px}
+
+/* ============ TICKER ============ */
+.ticker{background:#0c3d1d;color:#bfeccb;border-bottom:1px solid rgba(255,255,255,.08);overflow:hidden;font-family:var(--f-mono);font-size:.76rem;position:relative}
+.ticker__tag{position:absolute;left:0;top:0;bottom:0;z-index:2;display:flex;align-items:center;gap:.5rem;
+  padding:0 1rem;background:var(--green);color:#08160d;font-weight:700;letter-spacing:.08em}
+.ticker__dot{width:7px;height:7px;border-radius:50%;background:#08160d;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.ticker__mask{padding-left:160px;display:flex;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 100%)}
+.ticker__track{display:flex;flex-shrink:0;gap:2.4rem;padding:.55rem 1.2rem;white-space:nowrap;animation:slide 38s linear infinite}
+.ticker__track span b{color:#7fe6a0}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+/* ============ NAV ============ */
+.nav{position:sticky;top:0;z-index:60;background:#fff;box-shadow:0 1px 0 var(--line);transition:box-shadow .25s ease}
+.nav__inner{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:1.25rem;color:var(--ink)}
+.nav--solid{box-shadow:0 6px 22px -10px rgba(12,31,20,.16)}
+.brand{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.brand__logo{height:28px;width:auto;display:block}
+.brand__ico{height:32px;width:32px;flex-shrink:0;display:block}
+.brand__img{height:34px;width:auto;display:block}
+.foot__logo{display:inline-block;background:#fff;padding:.5rem .75rem;border-radius:11px;margin-bottom:1rem}
+.brand__word{font-family:var(--f-display);font-weight:800;font-size:1.4rem;letter-spacing:-.03em;color:#20272b;line-height:1}
+.foot__brand .brand__word{color:#fff}
+.foot__brand .brand__logo{filter:brightness(0) invert(1)}
+.nav__links{display:flex;gap:.1rem;align-items:center}
+.nav__item{position:relative}
+.nav__link{display:flex;align-items:center;gap:.3rem;font-weight:600;font-size:.92rem;color:var(--ink);padding:.55rem .62rem;border-radius:8px;background:none;transition:background .15s,color .15s;position:relative;white-space:nowrap;cursor:pointer}
+.nav__link:hover{background:var(--mint-50);color:var(--forest)}
+.nav__link.is-active{color:var(--forest)}
+.nav__link.is-active::after{content:"";position:absolute;left:.62rem;right:.62rem;bottom:.26rem;height:2px;background:var(--green);border-radius:2px}
+.nav__caret{transition:transform .2s;flex-shrink:0;opacity:.7}
+.nav__item:hover .nav__caret,.nav__item.open .nav__caret{transform:rotate(180deg)}
+.nav__panel{position:absolute;top:calc(100% + .45rem);left:0;min-width:238px;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow-lg);padding:.45rem;opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s;z-index:80}
+.nav__item:hover .nav__panel,.nav__item:focus-within .nav__panel,.nav__item.open .nav__panel{opacity:1;visibility:visible;transform:none}
+.nav__panel a{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.58rem .7rem;border-radius:7px;font-size:.9rem;font-weight:600;color:var(--ink);opacity:1;transition:background .15s}
+.nav__panel a:hover{background:var(--mint-50);color:var(--forest)}
+.nav__tag{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.05em;color:var(--forest);background:var(--mint-50);padding:.15rem .42rem;border-radius:6px;text-transform:uppercase;font-weight:600}
+.nav__cta{display:flex;align-items:center;gap:1.1rem}
+.nav__phone{font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+.nav__burger{display:none;width:42px;height:42px;border-radius:8px;align-items:center;justify-content:center;color:inherit}
+.nav__burger span,.nav__burger span::before,.nav__burger span::after{content:"";display:block;width:20px;height:2px;background:currentColor;position:relative;transition:.2s}
+.nav__burger span::before{position:absolute;top:-6px}.nav__burger span::after{position:absolute;top:6px}
+.nav.open .nav__burger span{background:transparent}
+.nav.open .nav__burger span::before{top:0;transform:rotate(45deg)}
+.nav.open .nav__burger span::after{top:0;transform:rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:linear-gradient(165deg,var(--hero-1) 0%,var(--hero-2) 62%,#0a3a18 100%);color:#fff;overflow:hidden;padding-top:clamp(1.5rem,3vw,2.4rem);padding-bottom:clamp(5rem,8vw,7rem)}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(560px 360px at 78% 8%,rgba(134,234,167,.22),transparent 70%),
+  radial-gradient(480px 380px at 12% 92%,rgba(42,244,143,.16),transparent 70%);pointer-events:none}
+.hero__grid{position:absolute;inset:0;opacity:.5;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(180deg,#000,transparent 80%)}
+.hero__inner{position:relative;display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(1.75rem,4vw,3.5rem);align-items:center}
+.hero__copy{max-width:42rem}
+.hero h1{color:#fff;font-size:clamp(2.4rem,4.7vw,4rem);margin:1.1rem 0 1.2rem}
+.hero h1 .rot{color:var(--green);display:inline-block}
+.hero h1 .nobreak{white-space:nowrap}
+.hero__sub{color:#cfeed9;font-size:clamp(1.05rem,1.6vw,1.28rem);max-width:46ch}
+.hero__ticks{list-style:none;display:flex;flex-wrap:wrap;gap:.7rem 1.4rem;margin:1.7rem 0 1.9rem}
+.hero__ticks li{display:flex;align-items:center;gap:.5rem;font-weight:600;color:#e6fded;font-size:.96rem}
+.hero__ticks svg{flex-shrink:0}
+.badges{display:flex;gap:.7rem;flex-wrap:wrap}
+.badge{display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);padding:.55rem .85rem;border-radius:11px;backdrop-filter:blur(6px)}
+.badge__src{width:30px;height:30px;border-radius:6px;background:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:.95rem;flex-shrink:0}
+.badge b{font-size:1.05rem;font-family:var(--f-display)}
+.badge small{display:block;font-size:.72rem;color:#bfeccb;line-height:1.2}
+.stars{color:var(--green);letter-spacing:1px;font-size:.85rem}
+.hero__quote{display:flex;gap:.6rem;margin:1.8rem 0 .8rem;flex-wrap:wrap;max-width:460px}
+.hero__quote select{flex:1;min-width:190px;padding:.98rem 1.1rem;border-radius:10px;border:none;background:#fff;color:var(--ink);font-family:inherit;font-weight:600;font-size:.96rem;cursor:pointer}
+.hero__nocredit{display:flex;align-items:center;gap:.45rem;font-size:.84rem;color:#cfeed9;margin-bottom:1.7rem}
+.hero__cta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:1.9rem 0}
+.hero__note{display:flex;align-items:center;gap:.4rem;font-size:.84rem;color:#cfeed9;font-weight:600}
+.hero__media{position:relative;width:fit-content;margin-left:auto;max-width:100%}
+/* Google 5.0 badge — covers the baked-in Qantas circle at the top-right of the collage */
+.hero__gbadge{position:absolute;left:92.9%;top:6.55%;transform:translate(-50%,-50%);width:13.2%;aspect-ratio:1;border-radius:50%;background:#fff;box-shadow:0 0 0 2px #fff,0 7px 16px rgba(0,0,0,.28);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:6;container-type:size}
+.hero__gbadge .gmark{width:34cqw;height:34cqw;display:block}
+.hero__gbadge-rating{display:flex;align-items:center;gap:2cqw;margin-top:5cqw;font-family:var(--f-display);font-weight:800;line-height:1;color:var(--ink);font-size:23cqw}
+.hero__gbadge-rating .star{color:#FBBC05;font-size:21cqw}
+.hero__shot{display:block;width:100%;max-width:540px;height:auto}
+.hero__collage{position:relative;display:grid;grid-template-columns:1.08fr .92fr;gap:.75rem;align-items:stretch}
+.hc__big{grid-column:1;grid-row:1 / 3;border-radius:14px;overflow:hidden;min-height:340px}
+.hc__big img{width:100%;height:100%;object-fit:cover;display:block}
+.hc__app{grid-column:2;grid-row:1;background:#fff;color:var(--ink);border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow-md);padding:.9rem;display:flex;flex-direction:column;gap:.42rem}
+.hc__brand{display:flex;align-items:center;gap:.35rem;font-family:var(--f-display);font-weight:800;font-size:.82rem;color:var(--forest);letter-spacing:-.02em}
+.hc__mark{width:18px;height:18px;border-radius:5px;background:var(--green);display:grid;place-items:center;flex-shrink:0}
+.hc__app-title{font-family:var(--f-display);font-weight:700;font-size:.92rem;color:var(--forest);margin-top:.1rem}
+.hc__row{display:flex;gap:.5rem;align-items:flex-start;padding-top:.42rem;border-top:1px solid var(--line)}
+.hc__ic{width:28px;height:28px;border-radius:7px;background:var(--mint-50);display:grid;place-items:center;flex-shrink:0}
+.hc__rtext b{display:block;font-size:.78rem;color:var(--ink);line-height:1.2}
+.hc__rtext small{font-size:.68rem;color:var(--ink-soft)}
+.hc__app-cta{margin-top:auto;font-weight:700;font-size:.76rem;color:var(--forest)}
+.hc__stat{grid-column:2;grid-row:2;background:linear-gradient(140deg,#107040,#14b866);color:#fff;border-radius:12px;padding:1rem 1.05rem;display:flex;flex-direction:column;justify-content:center}
+.hc__stat-num{font-family:var(--f-display);font-weight:800;font-size:2.15rem;line-height:1}
+.hc__stat-lab{font-size:.78rem;color:#dbffed;margin-top:.3rem}
+.hc__badge{position:absolute;left:-14px;bottom:-14px;background:#fff;color:var(--ink);border-radius:11px;box-shadow:var(--shadow-lg);padding:.55rem .8rem;display:flex;align-items:center;gap:.5rem}
+.hc__badge b{font-family:var(--f-display);font-size:1.1rem;line-height:1}
+.hc__badge small{display:block;font-size:.68rem;color:var(--ink-soft)}
+
+/* ============ MATCH CARD ============ */
+.matchcard{background:#fff;color:var(--ink);border-radius:16px;box-shadow:var(--shadow-lg);padding:1.6rem;position:relative;overflow:hidden}
+.matchcard::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--green),var(--mint-200),var(--forest))}
+.mc__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem}
+.mc__head h3{font-size:1.3rem}
+.mc__secure{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.04em;color:var(--forest);background:var(--mint-50);padding:.35rem .6rem;border-radius:6px;font-weight:600}
+.mc__label{font-weight:700;font-size:.92rem;margin-bottom:.55rem;display:flex;justify-content:space-between;align-items:baseline}
+.mc__amount{font-family:var(--f-display);font-weight:800;font-size:1.55rem;color:var(--forest)}
+.mc__slider{width:100%;accent-color:var(--green);height:6px;margin:.2rem 0 .35rem}
+.mc__range{display:flex;justify-content:space-between;font-size:.72rem;color:var(--ink-soft);font-family:var(--f-mono)}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin:.4rem 0 1.4rem}
+.chip{padding:.7rem .6rem;border-radius:9px;background:var(--paper-tint);border:1.5px solid var(--line);font-weight:600;font-size:.9rem;color:var(--ink-soft);display:flex;align-items:center;gap:.45rem;transition:.15s;text-align:left}
+.chip:hover{border-color:var(--mint-200)}
+.chip[aria-pressed="true"]{background:var(--mint-50);border-color:var(--green);color:var(--forest)}
+.chip svg{flex-shrink:0}
+.mc__nocredit{text-align:center;font-size:.8rem;color:var(--ink-soft);margin-top:.7rem;display:flex;align-items:center;justify-content:center;gap:.4rem}
+.mc__field{margin-bottom:1rem}
+
+/* results */
+.mc__results{display:none}
+.mc__results.show{display:block;animation:fadeUp .4s ease}
+.mc.flip .mc__form{display:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.res__pay{background:linear-gradient(135deg,var(--mint-50),#fff);border:1.5px solid var(--mint-100);border-radius:12px;padding:1.1rem 1.2rem;margin-bottom:1rem}
+.res__pay .k{font-size:.78rem;color:var(--ink-soft);font-weight:600;letter-spacing:.02em}
+.res__pay .v{font-family:var(--f-display);font-weight:800;font-size:2rem;color:var(--forest);line-height:1.1;margin:.15rem 0}
+.res__pay .term{font-size:.78rem;color:var(--ink-soft);font-family:var(--f-mono)}
+.res__match{font-weight:700;font-size:.9rem;margin-bottom:.65rem;display:flex;align-items:center;gap:.45rem}
+.res__match b{color:var(--forest)}
+.lender{display:flex;align-items:center;justify-content:space-between;padding:.6rem .15rem;border-bottom:1px dashed var(--line);opacity:0;transform:translateX(-8px);animation:lin .35s ease forwards}
+@keyframes lin{to{opacity:1;transform:none}}
+.lender__name{display:flex;align-items:center;gap:.55rem;font-weight:600;font-size:.92rem}
+.lender__dot{width:9px;height:9px;border-radius:50%;background:var(--green)}
+.lender__rate{font-family:var(--f-mono);font-weight:600;font-size:.9rem;color:var(--forest)}
+.lender__rate small{color:var(--ink-soft);font-weight:500;font-size:.66rem}
+.res__note{font-size:.76rem;color:var(--ink-soft);background:var(--paper-tint);border-radius:8px;padding:.65rem .75rem;margin:.9rem 0 1rem;line-height:1.45}
+.res__actions{display:flex;flex-direction:column;gap:.55rem}
+.linkbtn{background:none;color:var(--forest);font-weight:700;font-size:.88rem;text-decoration:underline;text-underline-offset:3px;align-self:center;padding:.3rem}
+
+/* ============ FINANCE BAR ============ */
+.finbar-wrap{position:relative;z-index:30;margin-top:clamp(-7rem,-7vw,-4rem);margin-bottom:2rem}
+.finbar{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);padding:1.35rem 1.5rem;display:flex;flex-direction:column;gap:1rem}
+.finbar__types{display:flex;flex-wrap:wrap;gap:.5rem}
+.ftype{display:flex;align-items:center;gap:.5rem;padding:.5rem .85rem;border-radius:9px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.88rem;color:var(--ink-soft);cursor:pointer;transition:.15s}
+.ftype::before{content:"";width:15px;height:15px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;transition:.15s}
+.ftype:hover{border-color:var(--mint-200)}
+.ftype.is-on{border-color:var(--green);background:var(--mint-50);color:var(--forest)}
+.ftype.is-on::before{border-color:var(--green);background:var(--green);box-shadow:inset 0 0 0 3px #fff}
+.finbar__row{display:flex;gap:.6rem;flex-wrap:wrap}
+.finbar__amount{flex:1;min-width:210px;display:flex;align-items:center;gap:.5rem;border:1.5px solid var(--line);border-radius:10px;padding:0 .95rem;background:#fff;transition:border-color .15s}
+.finbar__amount:focus-within{border-color:var(--green)}
+.fdollar{color:var(--ink-soft);font-weight:700;font-size:1.05rem}
+.finbar__amount input{flex:1;border:none;outline:none;padding:.85rem 0;font-family:inherit;font-size:1rem;font-weight:600;color:var(--ink);background:transparent;min-width:0}
+.finbar__cond{border:1.5px solid var(--line);border-radius:10px;padding:.85rem .9rem;background:#fff;font-family:inherit;font-weight:600;color:var(--ink);cursor:pointer}
+.finbar__go{white-space:nowrap}
+.finbar__foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:1rem}
+.finbar__term{border-top:1px solid var(--line);padding-top:.9rem}
+.finbar__mini{width:150px;max-width:38vw;accent-color:var(--green);height:6px;cursor:pointer;vertical-align:middle;margin:0 .5rem}
+.finbar__over{font-family:var(--f-mono);font-size:.7rem;color:var(--ink-soft);margin-left:.2rem}
+.finbar__term-val{font-family:var(--f-mono)!important;font-size:.82rem!important;color:var(--forest)!important;margin:0!important;vertical-align:baseline!important}
+.finbar__mo{font-size:.95rem;color:var(--ink-soft);font-weight:500;display:flex;align-items:center;flex-wrap:wrap;gap:.15rem}
+.finbar__mo b{font-family:var(--f-display);font-size:1.35rem;color:var(--forest);margin:0 .3rem;vertical-align:-1px}
+.finbar__mo span{font-family:var(--f-mono);font-size:.7rem;color:var(--ink-soft)}
+.finbar__cta{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;font-size:.92rem;color:var(--forest)}
+.finbar__cta:hover{gap:.6rem}
+
+/* ============ LOGOS ============ */
+.logos h2{font-size:clamp(1.5rem,2.6vw,2rem)}
+.logos__marquee{margin-top:2.2rem;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);cursor:pointer}
+.logos__track{display:flex;gap:1rem;width:max-content;animation:logoslide 34s linear infinite}
+.logos__marquee:hover .logos__track,.logos__marquee.paused .logos__track{animation-play-state:paused}
+@keyframes logoslide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.logos__marquee .logo-chip{flex:0 0 auto;min-width:190px}
+.logo-chip{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:1.15rem 1rem;min-height:78px;border-radius:11px;background:var(--paper);border:1px solid var(--line);font-family:var(--f-display);font-weight:700;font-size:1.05rem;color:var(--forest);box-shadow:var(--shadow-sm);transition:.18s}
+.logo-chip:hover{transform:translateY(-3px);border-color:var(--mint-200)}
+.logo-chip img{max-height:34px;max-width:130px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.72;transition:.2s}
+.logo-chip:hover img{filter:grayscale(0);opacity:1}
+.logo-chip .logo-fb{display:none}
+.logo-chip .ldot{width:10px;height:10px;border-radius:3px;background:var(--green)}
+
+/* ============ SHOWCASE (photo band) ============ */
+.showcase{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(1.8rem,5vw,4.5rem);align-items:center}
+.showcase__media{position:relative}
+.showcase__img{aspect-ratio:4/5;width:100%;object-fit:cover;border-radius:16px;box-shadow:var(--shadow-lg);display:block}
+.showcase__frame{position:absolute;inset:-14px -14px auto auto;width:70%;height:70%;border-radius:16px;border:2px solid var(--green);z-index:-1}
+.showcase__badge{position:absolute;left:-18px;bottom:26px;background:#fff;border-radius:12px;box-shadow:var(--shadow-md);padding:.9rem 1.1rem;display:flex;align-items:center;gap:.7rem;max-width:230px}
+.showcase__badge .bdot{width:40px;height:40px;border-radius:8px;background:var(--mint-50);display:grid;place-items:center;flex-shrink:0}
+.showcase__badge b{font-family:var(--f-display);color:var(--forest);font-size:1rem;display:block;line-height:1.15}
+.showcase__badge small{font-size:.76rem;color:var(--ink-soft)}
+.showcase__list{list-style:none;display:grid;gap:.75rem;margin:1.5rem 0 1.9rem}
+.showcase__list li{display:flex;gap:.6rem;align-items:flex-start;color:var(--ink-soft);font-size:.98rem}
+.showcase__list b{color:var(--ink)}
+
+/* ============ STATS ============ */
+.stats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:1.7rem 1.4rem}
+.stat__num{font-family:var(--f-display);font-weight:800;font-size:clamp(2.2rem,4vw,3.1rem);color:#fff;line-height:1;display:flex;align-items:baseline;gap:.05em}
+.stat__num .suf{color:var(--green);font-size:.55em}
+.stat__lab{margin-top:.5rem;color:#bfeccb;font-weight:600;font-size:.92rem}
+
+/* ============ HOW ============ */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3rem;position:relative}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-card);padding:1.8rem;box-shadow:var(--shadow-sm);position:relative}
+.step__n{font-family:var(--f-mono);font-weight:600;font-size:.8rem;color:var(--forest);letter-spacing:.1em}
+.step__ic{width:52px;height:52px;border-radius:11px;background:var(--mint-50);display:grid;place-items:center;margin:.9rem 0 1.1rem}
+.step h3{font-size:1.25rem;margin-bottom:.5rem}
+.step p{color:var(--ink-soft);font-size:.96rem}
+
+/* ============ SOLUTIONS ============ */
+.carousel:has(.sol__track){margin-top:2.4rem}
+.sol__track{padding-bottom:1.2rem}
+.sol{flex:0 0 clamp(248px,30%,300px);scroll-snap-align:start;padding:1.6rem;border-radius:var(--r-card);background:var(--paper);border:1px solid var(--line);transition:.2s;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+.sol:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--mint-200)}
+.sol__ic{width:48px;height:48px;border-radius:10px;background:var(--mint-50);display:grid;place-items:center;margin-bottom:1rem}
+.sol h3{font-size:1.15rem;margin-bottom:.45rem}
+.sol p{color:var(--ink-soft);font-size:.9rem;margin-bottom:.9rem}
+.sol__link{font-weight:700;font-size:.88rem;color:var(--forest);display:inline-flex;gap:.35rem;align-items:center;transition:gap .15s;margin-top:auto}
+.sol:hover .sol__link{gap:.6rem}
+
+/* ============ ESTIMATOR ============ */
+.est{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+.est-stage{position:relative}
+.est-float{position:absolute;top:-30px;left:-40px;width:38%;max-width:206px;z-index:2;border-radius:16px;box-shadow:var(--shadow-lg);border:1px solid var(--line);display:block}
+.est-stage .est__panel{position:relative;z-index:1}
+.est__panel{background:var(--paper);border-radius:16px;box-shadow:var(--shadow-md);padding:1.9rem;border:1px solid var(--line)}
+.est__big{font-family:var(--f-display);font-weight:800;font-size:clamp(2.6rem,5vw,3.6rem);color:var(--forest);line-height:1}
+.est__big small{font-size:.32em;color:var(--ink-soft);font-weight:600}
+.est__terms{display:flex;gap:.45rem;flex-wrap:wrap;margin:1.1rem 0}
+.term-btn{padding:.55rem .9rem;border-radius:8px;background:var(--paper-tint);border:1.5px solid var(--line);font-weight:600;font-size:.85rem;color:var(--ink-soft);font-family:var(--f-mono);transition:.15s}
+.term-btn[aria-pressed="true"]{background:var(--forest);color:#fff;border-color:var(--forest)}
+.est__rate{font-size:.85rem;color:var(--ink-soft);margin-top:.3rem;font-family:var(--f-mono)}
+
+/* ============ PEOPLE ============ */
+.people__top{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-bottom:3rem}
+.map{position:relative}
+.map svg{width:100%;height:auto}
+.node-lab{font-family:var(--f-mono);font-size:9px;fill:var(--forest);font-weight:600}
+.trustlist{list-style:none;display:grid;gap:.9rem;margin-top:1.5rem}
+.trustlist li{display:flex;gap:.7rem;align-items:flex-start;font-size:.96rem;color:var(--ink-soft)}
+.trustlist b{color:var(--ink)}
+.trustlist svg{flex-shrink:0;margin-top:2px}
+.brokers{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.broker{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-card);padding:1.5rem;text-align:center;box-shadow:var(--shadow-sm);transition:.2s}
+.broker:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.avatar{width:92px;height:92px;border-radius:50%;margin:0 auto .9rem;position:relative;display:grid;place-items:center;background:linear-gradient(135deg,var(--forest),var(--forest));color:#fff;font-family:var(--f-display);font-weight:800;font-size:1.6rem;overflow:hidden;box-shadow:0 8px 20px -10px rgba(24,98,49,.6)}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.broker h3{font-size:1.12rem;margin-bottom:.1rem}
+.broker .role{font-size:.82rem;color:var(--ink-soft);margin-bottom:.7rem}
+.broker .ph{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;color:var(--forest);font-size:.95rem;font-family:var(--f-mono)}
+.people__cta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:2.4rem}
+
+/* ============ REVIEWS / GOOGLE CAROUSEL ============ */
+.greviews__head{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.greviews__brand{display:flex;align-items:center;gap:.9rem}
+.greviews__title{font-family:var(--f-display);font-weight:700;font-size:1.15rem;color:var(--ink);line-height:1.1}
+.greviews__rate{display:flex;align-items:center;gap:.45rem;font-size:.92rem;color:var(--ink-soft);margin-top:.15rem}
+.greviews__rate b{font-family:var(--f-display);font-size:1.25rem;color:var(--forest)}
+.greviews__gold{color:#FBBC05;letter-spacing:1px;font-size:1rem}
+.greviews__actions{display:flex;gap:.6rem;flex-wrap:wrap}
+.carousel{position:relative;margin-top:.4rem}
+.carousel__track{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:.5rem .2rem 1.5rem;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.carousel__track::-webkit-scrollbar{display:none}
+.grev{flex:0 0 clamp(280px,31%,358px);scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-card);padding:1.5rem;box-shadow:var(--shadow-sm)}
+.grev__head{display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem}
+.grev__av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--f-display);font-weight:700;font-size:1.1rem;flex-shrink:0}
+.grev__name{font-weight:700;font-size:.95rem;color:var(--ink);display:flex;align-items:center;gap:.4rem}
+.grev__date{font-size:.78rem;color:var(--ink-soft)}
+.grev__stars{color:#FBBC05;letter-spacing:1px;font-size:.95rem;margin-bottom:.55rem}
+.grev__text{font-size:.95rem;color:var(--ink);line-height:1.55}
+.carousel__arrow{position:absolute;top:42%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-md);display:grid;place-items:center;color:var(--forest);z-index:5;transition:.15s}
+.carousel__arrow:hover{background:var(--mint-50)}
+.carousel__arrow.prev{left:-14px}.carousel__arrow.next{right:-14px}
+.carousel__dots{display:flex;gap:.4rem;justify-content:center;margin-top:.2rem}
+.carousel__dots button{width:8px;height:8px;border-radius:50%;background:var(--mint-100);transition:.2s;border:none;cursor:pointer;padding:0}
+.carousel__dots button.active{background:var(--green);width:22px;border-radius:5px}
+.dualbadge{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:2.4rem;align-items:center}
+.gbadge{display:flex;align-items:center;gap:.6rem;background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:.6rem .9rem;box-shadow:var(--shadow-sm)}
+.gbadge .src{width:30px;height:30px;border-radius:6px;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;color:#fff;font-size:.9rem}
+.gbadge b{font-family:var(--f-display);font-size:1.05rem}
+.gbadge small{display:block;font-size:.72rem;color:var(--ink-soft)}
+
+/* ============ ARTICLES ============ */
+.articles__head{display:grid;grid-template-columns:1fr 1.9fr;gap:2rem;align-items:start;margin-bottom:2.6rem}
+.articles__head h2{font-size:clamp(2rem,4.4vw,3.25rem);margin-top:.05rem}
+.articles__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+.article{display:flex;flex-direction:column}
+.article__cover{position:relative;aspect-ratio:16/10;border-radius:13px;overflow:hidden;display:flex;align-items:flex-start;padding:1rem;box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s}
+.article:hover .article__cover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.article__cover .wm{position:absolute;right:-14px;bottom:-16px;width:132px;height:132px;opacity:.16;color:#fff}
+.article__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.article__meta{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin:.95rem 0 .35rem}
+.article__cat{position:relative;z-index:1;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);padding:.32rem .62rem;border-radius:12px;font-weight:600}
+.article h3{font-family:var(--f-display);font-weight:700;font-size:clamp(1.15rem,1.7vw,1.38rem);color:var(--forest);line-height:1.2;margin:0 0 .85rem}
+.article__more{margin-top:auto;display:inline-flex;align-items:center;gap:.45rem;font-weight:700;font-size:.9rem;color:var(--forest);align-self:flex-start;border-bottom:2px solid var(--green);padding-bottom:2px;transition:gap .15s}
+.article:hover .article__more{gap:.75rem}
+
+/* ============ FAQ ============ */
+.faq{max-width:780px;margin-inline:auto}
+.faq details{border-bottom:1px solid var(--line);padding:.4rem 0}
+.faq summary{list-style:none;cursor:pointer;padding:1.05rem .2rem;font-family:var(--f-display);font-weight:600;font-size:1.1rem;color:var(--forest);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.5rem;color:var(--forest);transition:transform .2s;font-family:var(--f-body);font-weight:400}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{padding:0 .2rem 1.1rem;color:var(--ink-soft);font-size:.98rem;max-width:68ch}
+
+/* ============ FINAL CTA ============ */
+.cta-final{text-align:center}
+.cta-final h2{color:#fff;font-size:clamp(2.1rem,4.5vw,3.2rem);max-width:18ch;margin:.7rem auto 1rem}
+.cta-final .lead{margin:0 auto 2rem;color:#cdeed9}
+.cta-mini{display:flex;gap:.6rem;max-width:540px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-mini select{flex:1;min-width:200px;padding:1.05rem 1.1rem;border-radius:var(--r-pill);border:none;font-family:inherit;font-weight:600;font-size:1rem;color:var(--ink);background:#fff}
+.cta-alt{margin-top:1.4rem;color:#bfeccb;font-size:.95rem}
+.cta-alt a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* ============ FOOTER ============ */
+.foot{background:#0a3014;color:#bcdcc6;padding-block:clamp(3rem,5vw,4.5rem) 2rem}
+.foot__top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot__brand .brand{color:#fff;margin-bottom:1rem}
+.foot__brand p{font-size:.85rem;line-height:1.7;color:#9cc4a8}
+.foot__brand .em{color:#fff;font-weight:600}
+.foot col,.foot__col h4{margin-bottom:.9rem}
+.foot__col h4{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:600}
+.foot__col a{display:block;font-size:.86rem;padding:.28rem 0;color:#bcdcc6;transition:color .15s}
+.foot__col a:hover{color:#fff}
+.foot__socials{display:flex;gap:.7rem;margin-top:1.1rem}
+.foot__socials a{width:36px;height:36px;border-radius:7px;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:.15s}
+.foot__socials a:hover{background:var(--green);color:#08160d}
+.foot__bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:1.6rem;font-size:.8rem;color:#88b394;flex-wrap:wrap}
+
+/* ============ MOBILE BAR ============ */
+.mobar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:70;background:#fff;border-top:1px solid var(--line);padding:.6rem .8rem;gap:.6rem;box-shadow:0 -8px 24px -12px rgba(0,0,0,.2)}
+.mobar a{flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.85rem;border-radius:var(--r-pill);font-weight:700;font-size:.95rem}
+.mobar .call{background:var(--mint-50);color:var(--forest)}
+.mobar .go{background:var(--green);color:var(--btn-text)}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1160px){
+  .nav__inner{gap:1rem}
+  .nav__links{gap:0}
+  .nav__link{padding:.5rem .5rem;font-size:.9rem}
+  .nav__phone span{display:none}
+  .nav__cta{gap:.7rem}
+}
+@media(max-width:1000px){
+  .nav__burger{display:flex}
+  .nav__links{position:fixed;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:#fff;padding:.6rem clamp(1.25rem,5vw,2.5rem) 1.6rem;box-shadow:var(--shadow-lg);border-top:1px solid var(--line);max-height:calc(100vh - var(--nav-h));overflow-y:auto;transform:translateY(-14px);opacity:0;visibility:hidden;transition:.22s}
+  .nav.open .nav__links{transform:none;opacity:1;visibility:visible}
+  .nav__item{width:100%;border-bottom:1px solid var(--line)}
+  .nav__item:last-child{border-bottom:none}
+  .nav__link{color:var(--ink);width:100%;justify-content:space-between;padding:.95rem .3rem;font-size:1.02rem;border-radius:0}
+  .nav__link:hover{background:none}
+  .nav__link.is-active::after{display:none}
+  .nav__panel{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;padding:0 0 .6rem;min-width:0;display:none}
+  .nav__item.open .nav__panel{display:block}
+  .nav__panel a{padding:.55rem .8rem;color:var(--ink-soft);font-weight:500}
+}
+/* ===== FINANCE PARTNER ===== */
+.partner{position:relative;overflow:hidden;border-radius:24px;background:linear-gradient(150deg,#0e5f38 0%,#0a3a18 100%);color:#eafff1;padding:clamp(1.6rem,3.2vw,2.5rem);box-shadow:var(--shadow-lg)}
+.partner__glow{position:absolute;inset:0;background:radial-gradient(560px 320px at 90% -5%,rgba(42,244,143,.22),transparent 70%),radial-gradient(420px 300px at -5% 105%,rgba(134,234,167,.14),transparent 70%);pointer-events:none}
+.partner__inner{position:relative}
+.partner__copy .eyebrow{color:var(--green)}
+.partner__copy h2{color:#fff;font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.1;margin:.5rem 0 .7rem}
+.partner__lead{color:#cfeed9;font-size:1.05rem;line-height:1.6;max-width:80ch}
+.partner__benefits{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem 1.6rem;margin:1.2rem 0 1.5rem}
+.partner__benefits li{position:relative;padding-left:2rem;color:#eafff1;font-size:.98rem;line-height:1.45}
+.partner__benefits li b{color:#fff}
+.partner__benefits li::before{content:"✓";position:absolute;left:0;top:.02rem;width:1.35rem;height:1.35rem;border-radius:50%;background:var(--green);color:#08160d;font-size:.72rem;font-weight:800;display:grid;place-items:center}
+.partner__cta{display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap}
+.partner__note{font-size:.83rem;color:#bfeccb}
+.partner__card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:1.5rem 1.6rem;backdrop-filter:blur(4px)}
+.partner__card-head{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:#9fd9b6;margin-bottom:1.1rem}
+.partner__row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:.95rem;color:#d6f5e2}
+.partner__row b{color:#fff;font-weight:700;font-family:var(--f-display)}
+.partner__row--hi{border-bottom:none;padding-top:1rem}
+.partner__row--hi span{color:#fff;font-weight:600}
+.partner__row--hi b{color:var(--green);font-size:1.5rem}
+.partner__fine{font-size:.76rem;color:#9fd9b6;margin-top:1rem;line-height:1.5}
+@media(max-width:1000px){
+  .hero__inner,.est,.people__top,.showcase,.articles__head,.partner__inner{grid-template-columns:1fr}
+  .est-float{position:static;width:auto;max-width:280px;top:auto;left:auto;margin:0 0 1.3rem}
+  .est-stage .est__panel{margin-left:0}
+  .hero__media{margin:0 auto}
+  .hero__copy{max-width:none}
+  .matchcard{max-width:460px}
+  .logos__grid{grid-template-columns:repeat(2,1fr)}
+  .stats__grid,.steps,.sol__grid,.brokers,.articles__grid{grid-template-columns:repeat(2,1fr)}
+  .foot__top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .nav__phone span{display:none}
+  .nav__cta .btn{display:none}
+  .stats__grid,.steps,.sol__grid,.brokers,.articles__grid,.logos__grid,.foot__top{grid-template-columns:1fr}
+  .chips{grid-template-columns:1fr 1fr}
+  .partner__benefits{grid-template-columns:1fr}
+  .carousel__arrow{display:none}
+  .grev{flex-basis:85%}
+  .sol{flex-basis:80%}
+  .greviews__actions{width:100%}
+  .greviews__actions .btn{flex:1}
+  .mobar{display:flex}
+  body{padding-bottom:70px}
+  .ticker__tag{display:none}
+  .ticker__mask{padding-left:0}
+  .hero__ticks{gap:.5rem 1rem}
+  .finbar__row{flex-direction:column}
+  .finbar__cond,.finbar__go{width:100%}
+  .finbar__go{justify-content:center}
+  .finbar__foot{flex-direction:column;align-items:flex-start;gap:.65rem}
+  .hc__big{grid-column:1 / 3;grid-row:1;min-height:0;aspect-ratio:16/10}
+  .hc__app{grid-column:1;grid-row:2}
+  .hc__stat{grid-column:2;grid-row:2}
+  .hc__badge{left:auto;right:8px;bottom:8px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto}
+  .ticker__track,.logos__track{animation:none}
+  .logos__marquee{overflow-x:auto}
+  .reveal{opacity:1;transform:none}
+}
+/* ============ FINANCE QUOTE MODAL / WIZARD ============ */
+.qm{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center}
+.qm.open{display:flex}
+.qm__overlay{position:absolute;inset:0;background:rgba(6,26,15,.55);backdrop-filter:blur(3px)}
+.qm__dialog{position:relative;z-index:1;max-width:900px;margin:auto;width:calc(100% - 2rem);background:#fff;border-radius:20px;box-shadow:var(--shadow-lg);overflow:hidden;height:min(calc(100vh - 2rem),660px);display:flex;flex-direction:column;animation:qmIn .25s ease}
+@keyframes qmIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.qm__close{position:absolute;top:.8rem;right:1rem;z-index:5;width:36px;height:36px;border-radius:50%;background:rgba(12,31,20,.06);color:var(--ink);font-size:1.4rem;line-height:1;display:grid;place-items:center;transition:.15s}
+.qm__close:hover{background:rgba(12,31,20,.12)}
+.qm__grid{display:grid;grid-template-columns:1.35fr .9fr;min-height:0;flex:1;overflow:hidden}
+.qm__main{padding:clamp(1.4rem,3vw,2.1rem);display:flex;flex-direction:column;overflow-y:auto;direction:rtl;scrollbar-width:thin;scrollbar-color:var(--green-deep) transparent}
+.qm__main>*{direction:ltr}
+.qm__main::-webkit-scrollbar{width:11px}
+.qm__main::-webkit-scrollbar-track{background:transparent}
+.qm__main::-webkit-scrollbar-thumb{background:var(--green-deep);border-radius:8px;border:3px solid #fff;background-clip:padding-box}
+.qm__main::-webkit-scrollbar-thumb:hover{background:var(--forest);border:3px solid #fff;background-clip:padding-box}
+.qm__side{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.32) transparent}
+.qm__side::-webkit-scrollbar{width:11px}
+.qm__side::-webkit-scrollbar-track{background:transparent}
+.qm__side::-webkit-scrollbar-thumb{background:rgba(255,255,255,.3);border-radius:8px;border:3px solid transparent;background-clip:padding-box}
+.qm__side::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.5);border:3px solid transparent;background-clip:padding-box}
+.qm__progress{height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin-bottom:1.5rem;flex-shrink:0}
+.qm__progress span{display:block;height:100%;width:12%;background:linear-gradient(90deg,var(--green),var(--green-deep));border-radius:3px;transition:width .3s ease}
+.qm__step{display:none;animation:fadeUp .3s ease}
+.qm__step.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.qm__eyebrow{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--forest);font-weight:600}
+.qm__q{font-family:var(--f-display);font-weight:700;font-size:clamp(1.3rem,2.4vw,1.7rem);color:var(--forest);margin:.35rem 0 .3rem;line-height:1.1}
+.qm__hint{color:var(--ink-soft);font-size:.92rem;margin-bottom:1.1rem}
+.qm__label{display:block;font-weight:700;font-size:.9rem;color:var(--ink);margin:1rem 0 .5rem}
+.qm__field{margin-bottom:.9rem}
+.qm__field>label{display:block;font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:.4rem}
+.qm__field>label span{color:var(--ink-soft);font-weight:500}
+.qm__field input,.qm__field textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:.8rem .9rem;font-family:inherit;font-size:.98rem;font-weight:500;color:var(--ink);background:#fff;transition:border-color .15s,box-shadow .15s}
+.qm__field input:hover,.qm__field textarea:hover{border-color:var(--mint-200)}
+.qm__field input:focus,.qm__field textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(42,244,143,.18)}
+.qm__field textarea{resize:vertical;min-height:110px;font-weight:400}
+.qm__field select{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:.8rem .9rem;font-family:inherit;font-size:.98rem;font-weight:500;color:var(--ink);background:#fff;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'><path d='M6 9l6 6 6-6' stroke='%2347655a' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-repeat:no-repeat;background-position:right .85rem center;background-size:16px;padding-right:2.4rem;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.qm__field select:hover{border-color:var(--mint-200)}
+.qm__field select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(42,244,143,.18)}
+.qm__xsell{margin-top:1.4rem;text-align:left;background:var(--mint-50);border:1px solid var(--mint-100);border-radius:14px;padding:1.15rem 1.2rem}
+.qm__xsell h4{font-family:var(--f-display);color:var(--forest);font-size:1.06rem;margin-bottom:.35rem;line-height:1.2}
+.qm__xsell p{color:var(--ink-soft);font-size:.9rem;line-height:1.5;margin:0 0 .95rem;max-width:none}
+.qm__xsell p b{color:var(--forest)}
+.qm__xsell .btn{width:100%;justify-content:center}
+.qm__xsell-no{display:block;width:100%;margin:.55rem 0 0;background:none;border:none;color:var(--ink-soft);font-weight:600;font-size:.88rem;cursor:pointer;font-family:inherit;text-align:center}
+.qm__xsell-no:hover{color:var(--ink)}
+.qm__row2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.qm__opts{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-bottom:.3rem}
+.qm__opt{text-align:left;padding:.8rem .85rem;border-radius:10px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.9rem;color:var(--ink);cursor:pointer;transition:.15s;display:flex;align-items:center;gap:.55rem;line-height:1.25}
+.qm__opt:hover{border-color:var(--mint-200);background:var(--paper-tint)}
+.qm__opt.sel{border-color:var(--green);background:var(--mint-50);color:var(--forest)}
+.qm__opt::before{content:"";width:15px;height:15px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;transition:.15s}
+.qm__opt.sel::before{border-color:var(--green);background:var(--green);box-shadow:inset 0 0 0 3px #fff}
+.qm__opts.multi .qm__opt::before{border-radius:5px}
+.qm__opts.multi .qm__opt.sel::before{box-shadow:none;background:var(--green) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M5 12l4 4L19 7' stroke='%2308160d' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/12px no-repeat}
+.qm__consent{font-size:.78rem;color:var(--ink-soft);margin-top:.7rem;line-height:1.5}
+.qm__err{color:#c5221f;font-size:.82rem;margin-top:.7rem;font-weight:600;display:none}
+.qm__err.show{display:block}
+.qm__nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:auto;padding-top:1.4rem}
+.qm__back{color:var(--ink-soft);font-weight:600;font-size:.92rem;padding:.5rem .2rem;visibility:hidden;background:none;border:none;cursor:pointer;font-family:inherit}
+.qm__back.show{visibility:visible}
+.qm__next{min-width:150px}
+.qm__side{background:linear-gradient(165deg,var(--hero-1),#0a3a18);color:#eafff1;padding:clamp(1.4rem,3vw,2.1rem);display:flex;flex-direction:column;gap:.9rem;overflow-y:auto}
+.qm__side-logo{background:#fff;border-radius:10px;padding:.4rem .6rem;align-self:flex-start}
+.qm__side-logo img{height:26px;display:block}
+.qm__side h4{color:#fff;font-family:var(--f-display);font-size:1.15rem;margin-top:.3rem;line-height:1.2}
+.qm__side-sub{font-size:.88rem;color:#bfeccb;line-height:1.55}
+.qm__sumlist{list-style:none;display:grid;gap:0;margin-top:.5rem}
+.qm__sumlist[hidden],.qm__sumlist li[hidden]{display:none}
+.qm__sumlist li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;font-size:.86rem;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.13);animation:fadeUp .3s ease}
+.qm__sumlist li span{color:#9fd9b6;flex-shrink:0}
+.qm__sumlist li b{color:#fff;font-weight:600;text-align:right}
+.qm__side-foot{margin-top:auto;border-top:1px solid rgba(255,255,255,.16);padding-top:.9rem}
+.qm__side-trust{font-size:.9rem;color:#bfeccb;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.qm__side-trust b{font-family:var(--f-display);color:#fff;font-size:1.02rem}
+.qm__side-trust .qm__trustsub{flex-basis:100%;font-size:.74rem;color:#9fd9b6;white-space:nowrap;margin-top:.1rem}
+.qm__reassure{display:flex;gap:.4rem;align-items:flex-start;font-size:.75rem;color:#9fd9b6;line-height:1.45;margin-top:.5rem}
+.qm__reassure svg{flex-shrink:0;margin-top:1px}
+.qm__gold{color:#FBBC05;letter-spacing:1px}
+.qm__success{text-align:center;padding:.5rem 0}
+.qm__tick{width:64px;height:64px;border-radius:50%;background:var(--mint-50);color:var(--forest);display:grid;place-items:center;margin:.5rem auto 1rem;font-size:2rem;font-weight:800}
+.qm__success h3{font-family:var(--f-display);color:var(--forest);font-size:1.6rem;margin-bottom:.5rem}
+.qm__success p{color:var(--ink-soft);max-width:44ch;margin:0 auto 1.2rem}
+.qm__done-list{list-style:none;display:grid;gap:.6rem;max-width:380px;margin:0 auto 1.6rem;text-align:left}
+.qm__done-list li{display:flex;gap:.55rem;align-items:flex-start;font-size:.9rem;color:var(--ink)}
+.qm__done-list li::before{content:"✓";color:var(--forest);font-weight:800}
+.qm__success .btn{display:block;width:fit-content;margin-inline:auto}
+body.qm-lock{overflow:hidden}
+@media(max-width:820px){
+  .qm__grid{grid-template-columns:1fr}
+  .qm__side{display:none}
+  .qm__dialog{margin:.5rem auto;width:calc(100% - 1rem);height:calc(100vh - 1rem)}
+}
+@media(max-width:560px){
+  .qm__row2,.qm__opts{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="#top" aria-label="EasyAsset Finance home">
+      <img class="brand__img" src="assets/logo.png" alt="EasyAsset">
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <div class="nav__item">
+        <button class="nav__link is-active" type="button" aria-expanded="false">Finance <svg class="nav__caret" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav__panel">
+          <a href="#solutions">Asset &amp; equipment finance</a>
+          <a href="#solutions">Business loans</a>
+          <a href="#solutions">Lines of credit</a>
+          <a href="#solutions">Invoice factoring</a>
+          <a href="#solutions">Trade finance</a>
+          <a href="#solutions">Commercial mortgages</a>
+        </div>
+      </div>
+      <div class="nav__item">
+        <button class="nav__link" type="button" aria-expanded="false">Marketplace <svg class="nav__caret" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav__panel">
+          <a href="marketplace.html#markets">EasyAsset Industrial</a>
+          <a href="marketplace.html#markets">EasyAsset Medical</a>
+          <a href="marketplace.html#markets">EasyAsset Hospitality</a>
+          <a href="marketplace.html#markets">EasyAsset Farming</a>
+          <a href="marketplace.html#markets">Materials Handling</a>
+          <a href="marketplace.html#markets">Transport &amp; Logistics</a>
+        </div>
+      </div>
+      <div class="nav__item">
+        <button class="nav__link" type="button" aria-expanded="false">Services <svg class="nav__caret" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav__panel">
+          <a href="#">Compare <span class="nav__tag">soon</span></a>
+          <a href="#">Buy <span class="nav__tag">soon</span></a>
+          <a href="#">Insure <span class="nav__tag">soon</span></a>
+          <a href="#">Track &amp; manage <span class="nav__tag">soon</span></a>
+          <a href="#">Reorder <span class="nav__tag">soon</span></a>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="#reviews">Reviews</a></div>
+      <div class="nav__item"><a class="nav__link" href="#">Blog</a></div>
+      <div class="nav__item"><a class="nav__link" href="#">About</a></div>
+    </nav>
+    <div class="nav__cta">
+      <a class="nav__phone" href="tel:1300788373"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span>1300 788 373</span></a>
+      <a class="btn btn--primary" href="#top" data-open-finance>Get options</a>
+      <button class="nav__burger" id="burger" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <div class="hero__copy">
+      <span class="eyebrow">Australia-wide · 50+ lenders · one form</span>
+      <h1>Business finance,<br>made <span class="nobreak"><span class="rot" id="rotword">fast</span>.</span></h1>
+      <p class="hero__sub">Equipment, vehicles, fit-outs and working capital — compare 50+ Australian lenders with one quick form, then let a real broker do the rest.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary btn--lg" href="#finbar" data-open-finance>Get an online quote</a>
+        <span class="hero__note"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z" stroke="#cfeed9" stroke-width="1.7" stroke-linejoin="round"/></svg>No credit-score impact</span>
+      </div>
+    </div>
+
+    <div class="hero__media reveal">
+      <div class="hero__gbadge" aria-label="Rated 5.0 on Google">
+        <svg class="gmark" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7C13.4 14.6 18.3 10.8 24 10.8z"/></svg>
+        <span class="hero__gbadge-rating">5.0<span class="star">★</span></span>
+      </div>
+      <img class="hero__shot" alt="Australian business owners with EasyAsset finance"
+           src="assets/hero.png" data-alt="assets/hero.jpg,assets/hero.jpeg,assets/hero.webp"
+           onerror="var a=(this.dataset.alt||'').split(',').filter(Boolean);if(a.length){this.src=a.shift();this.dataset.alt=a.join(',')}else{this.removeAttribute('src');this.onerror=null;this.style.cssText='width:100%;max-width:540px;aspect-ratio:1/1;border-radius:16px;background:linear-gradient(140deg,#0e5f38,#17c06e);color:transparent;font-size:0'}">
+    </div>
+  </div>
+</section>
+
+<!-- FINANCE BAR (straddles hero + section below) -->
+<div class="finbar-wrap wrap" id="finbar">
+  <div class="finbar reveal">
+    <div class="finbar__types" id="finTypes" role="tablist">
+      <button class="ftype is-on" type="button" data-t="Equipment">Equipment</button>
+      <button class="ftype" type="button" data-t="Vehicle">Vehicle</button>
+      <button class="ftype" type="button" data-t="Truck">Truck</button>
+      <button class="ftype" type="button" data-t="Fit-out">Fit-out</button>
+      <button class="ftype" type="button" data-t="Commercial">Commercial</button>
+      <button class="ftype" type="button" data-t="Working capital">Working capital</button>
+    </div>
+    <div class="finbar__row">
+      <label class="finbar__amount"><span class="fdollar">$</span><input type="text" inputmode="numeric" id="finAmount" placeholder="Enter loan amount"></label>
+      <select class="finbar__cond" id="finCond" aria-label="Asset condition">
+        <option>New</option>
+        <option>Used</option>
+      </select>
+      <button class="btn btn--primary finbar__go" id="finEstimate" type="button" data-open-finance>Get my finance options →</button>
+    </div>
+    <div class="finbar__foot">
+      <div class="finbar__mo">Est. repayment <b id="finMonthly">—</b> <span class="finbar__over">· indicative over</span> <input type="range" class="finbar__mini" id="finTerm" min="12" max="84" step="6" value="84" aria-label="Loan term"> <b class="finbar__term-val" id="finTermVal">7 yrs</b></div>
+      <a class="finbar__cta" href="#brokers">Talk to a broker <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- LOGOS -->
+<section class="section logos" id="lenders">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Our lending panel</span>
+      <h2>Partnering with Australia's top lenders</h2>
+      <p class="lead">Arranging finance for 2&nbsp;million buyers across Australia's leading B2B marketplaces means we negotiate rates the big banks usually keep for their best customers.</p>
+    </div>
+    <div class="logos__marquee reveal" id="logosMarquee" title="Tap to pause / resume">
+      <div class="logos__track">
+        <div class="logo-chip"><img src="https://www.easyasset.com.au/img/anz-muted.svg" alt="ANZ" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">ANZ</span></div>
+        <div class="logo-chip"><img src="https://www.easyasset.com.au/img/judobank-muted.svg" alt="Judo Bank" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Judo Bank</span></div>
+        <div class="logo-chip"><img src="https://www.easyasset.com.au/img/prospa-new.svg" alt="Prospa" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Prospa</span></div>
+        <div class="logo-chip"><img src="https://www.easyasset.com.au/img/logo-shift-muted.svg" alt="Shift" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Shift</span></div>
+        <div class="logo-chip"><img src="https://www.easyasset.com.au/img/logo-pepper-money.svg" alt="Pepper Money" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Pepper Money</span></div>
+        <div class="logo-chip"><img src="https://www.easyasset.com.au/img/lumi-muted.svg" alt="Lumi" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Lumi</span></div>
+        <div class="logo-chip"><img src="https://www.easyasset.com.au/img/logo-plenti-muted.png" alt="Plenti" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Plenti</span></div>
+        <div class="logo-chip"><img src="https://www.easyasset.com.au/img/angle-muted-1.svg" alt="Angle Finance" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Angle</span></div>
+        <div class="logo-chip" aria-hidden="true"><img src="https://www.easyasset.com.au/img/anz-muted.svg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">ANZ</span></div>
+        <div class="logo-chip" aria-hidden="true"><img src="https://www.easyasset.com.au/img/judobank-muted.svg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Judo Bank</span></div>
+        <div class="logo-chip" aria-hidden="true"><img src="https://www.easyasset.com.au/img/prospa-new.svg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Prospa</span></div>
+        <div class="logo-chip" aria-hidden="true"><img src="https://www.easyasset.com.au/img/logo-shift-muted.svg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Shift</span></div>
+        <div class="logo-chip" aria-hidden="true"><img src="https://www.easyasset.com.au/img/logo-pepper-money.svg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Pepper Money</span></div>
+        <div class="logo-chip" aria-hidden="true"><img src="https://www.easyasset.com.au/img/lumi-muted.svg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Lumi</span></div>
+        <div class="logo-chip" aria-hidden="true"><img src="https://www.easyasset.com.au/img/logo-plenti-muted.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Plenti</span></div>
+        <div class="logo-chip" aria-hidden="true"><img src="https://www.easyasset.com.au/img/angle-muted-1.svg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-fb">Angle</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section section--forest stats">
+  <div class="wrap">
+    <div class="stats__grid reveal" data-stagger>
+      <div class="stat"><div class="stat__num"><span data-count="50" data-dec="0">0</span><span class="suf">+</span></div><div class="stat__lab">Lenders compared</div></div>
+      <div class="stat"><div class="stat__num"><span class="suf" style="font-size:.55em">$</span><span data-count="1.2" data-dec="1">0</span><span class="suf">B+</span></div><div class="stat__lab">Finance arranged</div></div>
+      <div class="stat"><div class="stat__num"><span data-count="24" data-dec="0">0</span><span class="suf">hr</span></div><div class="stat__lab">Funding, as fast as</div></div>
+      <div class="stat"><div class="stat__num"><span data-count="2" data-dec="0">0</span><span class="suf">M+</span></div><div class="stat__lab">Buyers on our platforms</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="section how" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Clarity in complexity</span>
+      <h2>Three steps to funded</h2>
+      <p class="lead">No jargon, no run-around. A real broker does the heavy lifting while you stay in control.</p>
+    </div>
+    <div class="steps reveal" data-stagger>
+      <div class="step">
+        <div class="step__n">01 — COMPARE</div>
+        <div class="step__ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.3-4.3M11 18a7 7 0 100-14 7 7 0 000 14z" stroke="#107040" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+        <h3>Compare your options</h3>
+        <p>Use the quick tool above or talk to a broker to compare rates from 50+ Australian lenders in minutes.</p>
+      </div>
+      <div class="step">
+        <div class="step__n">02 — NEGOTIATE</div>
+        <div class="step__ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M7 11l4-4 6 6M3 21l5-1 11-11a2.8 2.8 0 00-4-4L4 16l-1 5z" stroke="#107040" stroke-width="1.9" stroke-linejoin="round"/></svg></div>
+        <h3>We negotiate hard</h3>
+        <p>Your broker handles the paperwork and pushes lenders for the sharpest rate and the right structure.</p>
+      </div>
+      <div class="step">
+        <div class="step__n">03 — SETTLE</div>
+        <div class="step__ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2v14m0 0l-4-4m4 4l4-4M4 18v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="#107040" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Get funded fast</h3>
+        <p>Once approved, funds can land in as little as 24&nbsp;hours — so you can get straight back to business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="section section--tight">
+  <div class="wrap showcase">
+    <div class="showcase__media reveal">
+      <div class="showcase__frame" aria-hidden="true"></div>
+      <img class="showcase__img" alt="A hospitality business owner behind the bar of their venue" loading="lazy"
+           src="assets/bartender.jpg" data-alt="assets/bartender.jpeg,assets/bartender.png,assets/bartender.webp,https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&amp;fit=crop&amp;w=900&amp;q=80,https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
+           onerror="var a=(this.dataset.alt||'').split(',').filter(Boolean);if(a.length){this.src=a.shift();this.dataset.alt=a.join(',')}else{this.removeAttribute('src');this.onerror=null;this.style.cssText='background:linear-gradient(140deg,#0e5f38,#17c06e);color:transparent;font-size:0'}">
+      <div class="showcase__badge">
+        <span class="bdot"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#107040" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span><b>Funded in 24 hrs</b><small>Real brokers. Real businesses.</small></span>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Who we back</span>
+      <h2 style="margin:.7rem 0 .9rem">Finance for the people who actually run the business</h2>
+      <p class="lead">From the taps at the front bar to the cool room out the back, EasyAsset helps Australian operators fund the gear that keeps them trading. Hospitality, trades, medical, transport and everything in between.</p>
+      <ul class="showcase__list">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2AF48F"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#08160d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>New or used.</b> Fit-outs, vehicles and equipment across every industry.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2AF48F"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#08160d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Structured for tax and cash flow</b>, not just approval.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2AF48F"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#08160d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>One broker, start to finish</b> — no call centres, no bots.</span></li>
+      </ul>
+      <div class="people__cta" style="justify-content:flex-start">
+        <a class="btn btn--primary" href="#top">See what you can fund</a>
+        <a class="btn btn--ghost" href="#solutions">Browse solutions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<!-- FINANCE PARTNER -->
+<section class="section" id="partners">
+  <div class="wrap">
+    <div class="partner reveal">
+      <div class="partner__glow" aria-hidden="true"></div>
+      <div class="partner__inner">
+        <div class="partner__copy">
+          <span class="eyebrow">Finance partner program</span>
+          <h2>Refer finance. Earn on every deal.</h2>
+          <p class="partner__lead">Accountants, brokers and suppliers: introduce a client who needs equipment or business finance, and we handle the rest. You add value, keep the relationship, and earn a commission on every deal that settles — across 50+ lenders.</p>
+          <ul class="partner__benefits">
+            <li><b>A new revenue stream</b> — earn a referral commission on every successful deal.</li>
+            <li><b>Zero extra work</b> — we run lender selection, structuring, applications and approvals end-to-end.</li>
+            <li><b>Paid on settlement</b> — no involvement needed beyond the introduction.</li>
+            <li><b>Rewards that scale</b> — climb Silver and Gold tiers as your referrals grow.</li>
+          </ul>
+          <div class="partner__cta">
+            <button class="btn btn--primary btn--lg" type="button" id="becomePartner">Become a finance partner →</button>
+            <span class="partner__note">No cost to join · keep your client relationship</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tint" id="solutions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Our capabilities</span>
+      <h2>Finance for every part of the business</h2>
+      <p class="lead">We don't just find a loan — we tailor a structure built for cash flow, tax efficiency and growth.</p>
+    </div>
+    <div class="carousel reveal">
+      <button class="carousel__arrow prev" type="button" aria-label="Previous solutions"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="carousel__track sol__track" id="solTrack">
+      <div class="sol">
+        <div class="sol__ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 17l5-2 4 2 5-3 4 2M3 11l5-2 4 2 5-3 4 2" stroke="#107040" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Asset &amp; equipment finance</h3>
+        <p>Trucks, forklifts, tractors, medical and dental gear — new or used. We compare 50+ lenders for the right structure.</p>
+        <a class="sol__link" href="#top">Explore →</a>
+      </div>
+      <div class="sol">
+        <div class="sol__ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 19V8a2 2 0 012-2h12a2 2 0 012 2v11M4 12h16M8 6V4h8v2" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Business loans</h3>
+        <p>Cash flow, working capital, fit-outs and expansion — funding that flexes with your business, not against it.</p>
+        <a class="sol__link" href="#top">Explore →</a>
+      </div>
+      <div class="sol">
+        <div class="sol__ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 7l7-4 7 4M5 17l7 4 7-4" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Lines of credit</h3>
+        <p>Draw only what you need, repay as revenue arrives, and redraw without reapplying. Unsecured options available.</p>
+        <a class="sol__link" href="#top">Explore →</a>
+      </div>
+      <div class="sol">
+        <div class="sol__ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 4h11l3 3v13H5V4zM9 9h6M9 13h6M9 17h4" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Invoice factoring</h3>
+        <p>Turn unpaid invoices into cash now, with advances up to 90%. Stop waiting 30–90 days to get paid.</p>
+        <a class="sol__link" href="#top">Explore →</a>
+      </div>
+      <div class="sol">
+        <div class="sol__ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="10" stroke="#107040" stroke-width="1.8"/></svg></div>
+        <h3>Trade finance</h3>
+        <p>Fund purchase orders and pay overseas suppliers directly, so your supply chain never stalls for capital.</p>
+        <a class="sol__link" href="#top">Explore →</a>
+      </div>
+      <div class="sol">
+        <div class="sol__ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Commercial mortgages</h3>
+        <p>Buy or refinance premises with specialist lenders and structures that release equity when you need it.</p>
+        <a class="sol__link" href="#top">Explore →</a>
+      </div>
+      </div>
+      <button class="carousel__arrow next" type="button" aria-label="More solutions"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="carousel__dots" id="solDots"></div>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section class="section section--mint" id="brokers">
+  <div class="wrap">
+    <div class="people__top">
+      <div class="reveal">
+        <span class="eyebrow">Connect directly</span>
+        <h2 style="margin:.7rem 0 .9rem">Real Aussie brokers.<br>Close to home.</h2>
+        <p class="lead">No call centres and no bots. You get the direct mobile number of a real, licensed broker who knows the Australian market.</p>
+      </div>
+      <div class="reveal">
+        <ul class="trustlist">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#107040" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>No hidden fees.</b> Every cost is shown up front before you commit.</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/></svg><span><b>Licensed &amp; local.</b> EasyAsset Group Pty Ltd · ABN 20 079 858 236.</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#107040" stroke-width="1.8"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6" stroke="#107040" stroke-width="1.8" stroke-linecap="round"/></svg><span><b>Your broker, your number.</b> Same person from quote to settlement.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="brokers reveal" data-stagger>
+      <div class="broker">
+        <div class="avatar"><img src="https://www.easyasset.com.au/img/Headshot-Chris.png" alt="Chris Debbo" onerror="this.style.display='none'"></div>
+        <h3>Chris Debbo</h3>
+        <div class="role">Lead Finance Broker</div>
+        <a class="ph" href="tel:0480024020"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/></svg>0480 024 020</a>
+      </div>
+      <div class="broker">
+        <div class="avatar"><img src="https://www.easyasset.com.au/img/Headshot-ArrickAng.png" alt="Arrick Ang" onerror="this.style.display='none'"></div>
+        <h3>Arrick Ang</h3>
+        <div class="role">Support Broker</div>
+        <a class="ph" href="tel:0468078333"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/></svg>0468 078 333</a>
+      </div>
+      <div class="broker">
+        <div class="avatar"><img src="https://www.easyasset.com.au/img/Headshot%20-%20Ayman.png" alt="Ayman Ziad" onerror="this.style.display='none'"></div>
+        <h3>Ayman Ziad</h3>
+        <div class="role">Business Development</div>
+        <a class="ph" href="tel:0485938399"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/></svg>0485 938 399</a>
+      </div>
+    </div>
+    <div class="people__cta">
+      <a class="btn btn--primary btn--lg" href="https://calendar.app.google/gLFJ5hgaYpc1J9na6" target="_blank" rel="noopener">Book a 15-min chat</a>
+      <a class="btn btn--ghost btn--lg" href="tel:1300788373">Or call 1300 788 373</a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-inline:auto">
+      <span class="eyebrow">Don't take our word for it</span>
+      <h2 style="margin:.7rem 0">Businesses that backed themselves</h2>
+    </div>
+
+    <div class="greviews__head reveal">
+      <div class="greviews__brand">
+        <svg width="40" height="40" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7C13.4 14.6 18.3 10.8 24 10.8z"/></svg>
+        <div>
+          <div class="greviews__title">Google Reviews</div>
+          <div class="greviews__rate"><b>5.0</b> <span class="greviews__gold">★★★★★</span> <span>· loved by Aussie businesses</span></div>
+        </div>
+      </div>
+      <div class="greviews__actions">
+        <a class="btn btn--ghost" href="https://www.google.com/search?q=easyasset#lrd=0x6b12b144adf9db73:0x4f231e5847eea2cf,3" target="_blank" rel="noopener">Write a review</a>
+        <a class="btn btn--primary" href="https://www.google.com/search?q=easyasset#lrd=0x6b12b144adf9db73:0x4f231e5847eea2cf,1" target="_blank" rel="noopener">See all on Google</a>
+      </div>
+    </div>
+
+    <!-- SAMPLE reviews — replace with a live Google feed (Places API or a reviews widget) before publishing -->
+    <div class="carousel reveal">
+      <button class="carousel__arrow prev" type="button" aria-label="Previous reviews"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="carousel__track" id="revTrack">
+        <article class="grev">
+          <div class="grev__head"><span class="grev__av" style="background:#107040">M</span><div><div class="grev__name">Marco D. <svg width="13" height="13" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7C13.4 14.6 18.3 10.8 24 10.8z"/></svg></div><div class="grev__date">2 weeks ago</div></div></div>
+          <div class="grev__stars">★★★★★</div>
+          <p class="grev__text">Financing with EasyAsset was absolutely seamless. They did the work and came back sharper than my own bank.</p>
+        </article>
+        <article class="grev">
+          <div class="grev__head"><span class="grev__av" style="background:#0B8043">S</span><div><div class="grev__name">Sarah T. <svg width="13" height="13" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7C13.4 14.6 18.3 10.8 24 10.8z"/></svg></div><div class="grev__date">1 month ago</div></div></div>
+          <div class="grev__stars">★★★★★</div>
+          <p class="grev__text">Very easy to work with and genuinely professional. Clear on every cost, no surprises, and quick to settle.</p>
+        </article>
+        <article class="grev">
+          <div class="grev__head"><span class="grev__av" style="background:#1967D2">D</span><div><div class="grev__name">Daniel R. <svg width="13" height="13" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7C13.4 14.6 18.3 10.8 24 10.8z"/></svg></div><div class="grev__date">1 month ago</div></div></div>
+          <div class="grev__stars">★★★★★</div>
+          <p class="grev__text">Compared more lenders than I knew existed and explained every trade-off in plain English. Zero pressure.</p>
+        </article>
+        <article class="grev">
+          <div class="grev__head"><span class="grev__av" style="background:#C5221F">P</span><div><div class="grev__name">Priya N. <svg width="13" height="13" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7C13.4 14.6 18.3 10.8 24 10.8z"/></svg></div><div class="grev__date">3 weeks ago</div></div></div>
+          <div class="grev__stars">★★★★★</div>
+          <p class="grev__text">Had the truck approved and on the road within 48 hours. Could not fault the service or the rate.</p>
+        </article>
+        <article class="grev">
+          <div class="grev__head"><span class="grev__av" style="background:#12805A">J</span><div><div class="grev__name">Jack M. <svg width="13" height="13" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7C13.4 14.6 18.3 10.8 24 10.8z"/></svg></div><div class="grev__date">2 months ago</div></div></div>
+          <div class="grev__stars">★★★★★</div>
+          <p class="grev__text">Chris dealt with the lender so I never had to chase paperwork. Painless from first call to settlement.</p>
+        </article>
+        <article class="grev">
+          <div class="grev__head"><span class="grev__av" style="background:#B06000">E</span><div><div class="grev__name">Elena K. <svg width="13" height="13" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7C13.4 14.6 18.3 10.8 24 10.8z"/></svg></div><div class="grev__date">3 months ago</div></div></div>
+          <div class="grev__stars">★★★★★</div>
+          <p class="grev__text">Best rate I found anywhere for the clinic fit-out. Felt like they were actually on my side.</p>
+        </article>
+      </div>
+      <button class="carousel__arrow next" type="button" aria-label="More reviews"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="carousel__dots" id="revDots"></div>
+
+    <div class="dualbadge reveal">
+      <div class="gbadge"><svg width="30" height="30" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7C13.4 14.6 18.3 10.8 24 10.8z"/></svg><div><b>5.0</b> <span class="greviews__gold">★★★★★</span><small>Google reviews</small></div></div>
+      <div class="gbadge"><svg width="30" height="30" viewBox="0 0 24 24"><path fill="#00B67A" d="M12 1.5l3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 17.25l-6.18 3.25L7 13.63l-5-4.87 6.91-1L12 1.5z"/></svg><div><b>4.9</b> <span class="greviews__gold">★★★★★</span><small>Trustpilot</small></div></div>
+      <a class="btn btn--ghost" href="https://www.google.com/search?q=easyasset#lrd=0x6b12b144adf9db73:0x4f231e5847eea2cf,1" target="_blank" rel="noopener">See all our reviews</a>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="section" id="articles">
+  <div class="wrap">
+    <div class="articles__head reveal">
+      <span class="eyebrow">Recent articles</span>
+      <h2>Guides and insights to help your business grow</h2>
+    </div>
+    <!-- Live posts pulled from easyasset.com.au/blog (25 June 2026) -->
+    <div class="articles__grid reveal" data-stagger>
+      <a class="article" href="https://easyasset.com.au/how-to-reduce-monthly-repayments-on-business-equipment-in-2026/f/27821" target="_blank" rel="noopener">
+        <div class="article__cover" style="background:radial-gradient(130% 130% at 100% 0,rgba(255,255,255,.2),transparent 55%),linear-gradient(140deg,#0e5f38,#17c06e)">
+          <img class="article__img" src="https://portalimages.blob.core.windows.net/features/images/auhd0bw4_1234.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+          <svg class="wm" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.4" stroke="currentColor" stroke-width="1.4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.4 5.4l2.1 2.1M16.5 16.5l2.1 2.1M18.6 5.4l-2.1 2.1M7.5 16.5l-2.1 2.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="article__meta">Equipment Finance · 25 Jun 2026</div>
+        <h3>How to reduce monthly repayments on business equipment in 2026</h3>
+        <span class="article__more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="article" href="https://easyasset.com.au/how-to-unlock-cash-from-machinery-you-already-own-in-2026/f/27822" target="_blank" rel="noopener">
+        <div class="article__cover" style="background:radial-gradient(130% 130% at 0 100%,rgba(255,255,255,.18),transparent 55%),linear-gradient(140deg,#0b4a2b,#12946a)">
+          <img class="article__img" src="https://portalimages.blob.core.windows.net/features/images/n0nvnp34_1234.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+          <svg class="wm" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="8" ry="3" stroke="currentColor" stroke-width="1.4"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" stroke="currentColor" stroke-width="1.4"/></svg>
+        </div>
+        <div class="article__meta">Working Capital · 25 Jun 2026</div>
+        <h3>How to unlock cash from machinery you already own in 2026</h3>
+        <span class="article__more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a class="article" href="https://easyasset.com.au/can-refinancing-improve-business-cash-flow-in-2026/f/27823" target="_blank" rel="noopener">
+        <div class="article__cover" style="background:radial-gradient(130% 130% at 100% 100%,rgba(255,255,255,.16),transparent 55%),linear-gradient(140deg,#14b866,#0d5c34)">
+          <img class="article__img" src="https://portalimages.blob.core.windows.net/features/images/ykv5kwab_ChatGPTImageJun25%2C2026%2C03_31_37PM.png" alt="" loading="lazy" onerror="this.style.display='none'">
+          <svg class="wm" viewBox="0 0 24 24" fill="none"><path d="M7 11l4-4 6 6M3 21l5-1 11-11a2.8 2.8 0 00-4-4L4 16l-1 5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="article__meta">Refinancing · 25 Jun 2026</div>
+        <h3>Can refinancing improve business cash flow in 2026?</h3>
+        <span class="article__more">Read more <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--tint" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-inline:auto">
+      <span class="eyebrow">Good to know</span>
+      <h2 style="margin:.7rem 0">Questions, answered</h2>
+    </div>
+    <div class="faq reveal">
+      <details open>
+        <summary>Will comparing options affect my credit score?</summary>
+        <p>No. Seeing your indicative options is a soft process with no impact on your credit score. We only do a formal credit check once you've chosen to proceed with a specific lender — and we'll always tell you before that happens.</p>
+      </details>
+      <details>
+        <summary>How fast can I actually get funded?</summary>
+        <p>Many approvals come back the same day, and funds can land in as little as 24 hours once you're approved and documents are signed. Larger or more complex deals can take longer — your broker will give you a realistic timeline up front.</p>
+      </details>
+      <details>
+        <summary>What can I finance through EasyAsset?</summary>
+        <p>Equipment and vehicles (new or used), business fit-outs, working capital, invoice factoring, trade finance and commercial property. If your business needs it to grow, there's likely a lender on our panel for it.</p>
+      </details>
+      <details>
+        <summary>Do you charge fees?</summary>
+        <p>We're upfront about cost. Any fees that apply to your finance are shown clearly before you commit — no hidden charges and no surprises at settlement.</p>
+      </details>
+      <details>
+        <summary>How much can my business borrow?</summary>
+        <p>Typically from $5,000 up to $500,000 and beyond, depending on your trading history, the asset and the lender. The quick tool above gives you an indicative range in seconds.</p>
+      </details>
+      <details>
+        <summary>Do I need to bank with a specific lender?</summary>
+        <p>No. We compare 50+ bank and non-bank lenders and match you to the right one for your situation — you're never tied to a single institution.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section section--forest cta-final">
+  <div class="wrap">
+    <span class="eyebrow" style="justify-content:center">Ready when you are</span>
+    <h2>See your options in about 60 seconds</h2>
+    <p class="lead" style="text-align:center">One quick form. 50+ lenders. No impact to your credit score.</p>
+    <div class="cta-mini">
+      <select id="ctaBand" aria-label="Estimated amount">
+        <option>Less than $20,000</option>
+        <option selected>$20,000 to $99,000</option>
+        <option>$100,000 to $299,000</option>
+        <option>$300,000+</option>
+      </select>
+      <a class="btn btn--primary btn--lg" href="#top" data-open-finance data-amount-from="ctaBand">Get options →</a>
+    </div>
+    <p class="cta-alt">Prefer to talk? Call <a href="tel:1300788373">1300 788 373</a> or <a href="https://calendar.app.google/gLFJ5hgaYpc1J9na6" target="_blank" rel="noopener">book a chat</a>.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div class="foot__brand">
+        <div class="foot__logo"><img class="brand__img" src="assets/logo.png" alt="EasyAsset"></div>
+        <p><span class="em">EasyAsset Group Pty Ltd</span><br>ABN 20 079 858 236<br><br>Level 1, 1–5 Link Road, Zetland NSW 2017<br>Call: 1300 788 373</p>
+        <div class="foot__socials">
+          <a href="https://www.instagram.com/easyasset_/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="https://www.linkedin.com/company/easyasset/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 014 0v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a>
+          <a href="https://www.youtube.com/@easyassetgroup" target="_blank" rel="noopener" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l5 3-5 3V9z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="foot__col">
+        <h4>Asset finance</h4>
+        <a href="#top">Truck finance</a>
+        <a href="#top">Forklift finance</a>
+        <a href="#top">Tractor finance</a>
+        <a href="#top">Trailer finance</a>
+        <a href="#top">Medical equipment</a>
+        <a href="#top">Dental equipment</a>
+      </div>
+      <div class="foot__col">
+        <h4>Business loans</h4>
+        <a href="#top">Cash flow finance</a>
+        <a href="#top">Invoice finance</a>
+        <a href="#top">Working capital</a>
+        <a href="#top">Inventory finance</a>
+        <a href="#top">Fit-out finance</a>
+        <a href="#top">Lines of credit</a>
+      </div>
+      <div class="foot__col">
+        <h4>Company</h4>
+        <a href="#top">About us</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#brokers">Our brokers</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#top">Marketplaces</a>
+        <a href="#top">Blog</a>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 EasyAsset. All rights reserved.</span>
+      <span>Compare 50+ Australian lenders · No impact to your credit score to see options.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE BAR -->
+<div class="mobar">
+  <a class="call" href="tel:1300788373"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="#107040" stroke-width="1.8" stroke-linejoin="round"/></svg>Call</a>
+  <a class="go" href="#top" data-open-finance>Get options →</a>
+</div>
+
+<!-- FINANCE QUOTE MODAL / WIZARD -->
+<div class="qm" id="fqModal" aria-hidden="true">
+  <div class="qm__overlay" data-close-finance></div>
+  <div class="qm__dialog" role="dialog" aria-modal="true" aria-label="Get finance options">
+    <button class="qm__close" type="button" data-close-finance aria-label="Close">&times;</button>
+    <div class="qm__grid">
+      <div class="qm__main">
+        <div class="qm__progress"><span id="fqBar"></span></div>
+        <form id="fqForm" onsubmit="return false" novalidate>
+
+          <div class="qm__step on" data-step="1">
+            <span class="qm__eyebrow">Step 1 of 4</span>
+            <h3 class="qm__q">Let's find your finance options</h3>
+            <p class="qm__hint">A rough idea is fine — a broker refines it with you. No credit-score impact.</p>
+            <span class="qm__label">How much do you need?</span>
+            <div class="qm__opts" data-group="amount" data-multi="false">
+              <button type="button" class="qm__opt" data-val="Less than $20,000">Less than $20,000</button>
+              <button type="button" class="qm__opt" data-val="$20,000 to $99,000">$20,000 to $99,000</button>
+              <button type="button" class="qm__opt" data-val="$100,000 to $299,000">$100,000 to $299,000</button>
+              <button type="button" class="qm__opt" data-val="$300,000+">$300,000+</button>
+            </div>
+            <span class="qm__label">When do you need it in place?</span>
+            <div class="qm__opts" data-group="Timeline" data-multi="false">
+              <button type="button" class="qm__opt" data-val="Now">Now</button>
+              <button type="button" class="qm__opt" data-val="Within 1-3 months">Within 1–3 months</button>
+              <button type="button" class="qm__opt" data-val="More than 3 months away">More than 3 months away</button>
+              <button type="button" class="qm__opt" data-val="Not sure yet">Not sure yet</button>
+            </div>
+            <p class="qm__err" data-err="1">Please choose an amount and a timeframe.</p>
+          </div>
+
+          <div class="qm__step" data-step="2">
+            <span class="qm__eyebrow">Step 2 of 4</span>
+            <h3 class="qm__q">What will the finance be used for?</h3>
+            <p class="qm__hint">Select all that apply.</p>
+            <div class="qm__opts multi" data-group="Financing" data-multi="true">
+              <button type="button" class="qm__opt" data-val="Equipment / Trucks">Equipment / Trucks</button>
+              <button type="button" class="qm__opt" data-val="Vehicles / Utes">Vehicles / Utes</button>
+              <button type="button" class="qm__opt" data-val="Property / Fit-out">Property / Fit-out</button>
+              <button type="button" class="qm__opt" data-val="Working Capital">Working Capital</button>
+              <button type="button" class="qm__opt" data-val="Inventory & Trade Finance">Inventory &amp; Trade Finance</button>
+              <button type="button" class="qm__opt" data-val="Invoice or Cash Flow Finance">Invoice or Cash Flow Finance</button>
+              <button type="button" class="qm__opt" data-val="Refinance or Debt Consolidation">Refinance or Debt Consolidation</button>
+              <button type="button" class="qm__opt" data-val="Other">Other</button>
+            </div>
+            <div class="qm__field" id="fqEquipWrap" hidden style="margin-top:.7rem">
+              <label>What equipment are you financing? <span>(optional)</span></label>
+              <select id="fqEquipCat">
+                <option value="">Choose equipment…</option>
+                <option>Forklift</option>
+                <option>Excavator / earthmoving</option>
+                <option>Truck</option>
+                <option>Trailer</option>
+                <option>Tractor / farm machinery</option>
+                <option>Generator</option>
+                <option>Commercial kitchen equipment</option>
+                <option>Coolroom / refrigeration</option>
+                <option>CNC / metalworking machine</option>
+                <option>Woodworking machinery</option>
+                <option>Packaging machinery</option>
+                <option>Medical equipment</option>
+                <option>Dental equipment</option>
+                <option>Compressor</option>
+                <option>Crane / hoist</option>
+                <option>Other equipment</option>
+              </select>
+            </div>
+            <p class="qm__err" data-err="2">Please choose at least one option.</p>
+          </div>
+
+          <div class="qm__step" data-step="3">
+            <span class="qm__eyebrow">Step 3 of 4</span>
+            <h3 class="qm__q">A bit about the business</h3>
+            <p class="qm__hint">This helps us match you with the right lenders.</p>
+            <span class="qm__label">Which best describes the business looking for finance?</span>
+            <div class="qm__opts" data-group="Description" data-multi="false">
+              <button type="button" class="qm__opt" data-val="Startup - about to begin trading">Startup — about to begin trading</button>
+              <button type="button" class="qm__opt" data-val="ABN trading less than 2 years">ABN trading less than 2 years</button>
+              <button type="button" class="qm__opt" data-val="ABN trading more than 2 years">ABN trading more than 2 years</button>
+              <button type="button" class="qm__opt" data-val="Personal purchase (not a business)">Personal purchase (not a business)</button>
+              <button type="button" class="qm__opt" data-val="Not sure yet">Not sure yet</button>
+            </div>
+            <span class="qm__label">Do you or the business own property?</span>
+            <div class="qm__opts" data-group="PropertyOwner" data-multi="false">
+              <button type="button" class="qm__opt" data-val="Yes - one property">Yes — one property</button>
+              <button type="button" class="qm__opt" data-val="Yes - multiple properties">Yes — multiple properties</button>
+              <button type="button" class="qm__opt" data-val="No">No</button>
+              <button type="button" class="qm__opt" data-val="Not sure yet">Not sure yet</button>
+            </div>
+            <span class="qm__label">Have you or the business used finance before?</span>
+            <div class="qm__opts" data-group="PreviousLoan" data-multi="false">
+              <button type="button" class="qm__opt" data-val="Yes - currently using finance">Yes — currently using finance</button>
+              <button type="button" class="qm__opt" data-val="Yes - used finance before">Yes — used finance before</button>
+              <button type="button" class="qm__opt" data-val="No">No</button>
+              <button type="button" class="qm__opt" data-val="Not sure yet">Not sure yet</button>
+            </div>
+            <p class="qm__err" data-err="3">Please answer all three so we can match the right lenders.</p>
+          </div>
+
+          <div class="qm__step" data-step="4">
+            <span class="qm__eyebrow">Last step</span>
+            <h3 class="qm__q">Where should we send your options?</h3>
+            <div class="qm__row2">
+              <div class="qm__field"><label>Full name</label><input id="fqName" type="text" maxlength="60" placeholder="Your name" autocomplete="name"></div>
+              <div class="qm__field"><label>Email</label><input id="fqEmail" type="email" maxlength="80" placeholder="you@business.com.au" autocomplete="email"></div>
+            </div>
+            <div class="qm__row2">
+              <div class="qm__field"><label>Mobile</label><input id="fqPhone" type="tel" maxlength="20" placeholder="0400 000 000" autocomplete="tel"></div>
+              <div class="qm__field"><label>Purchasing for</label>
+                <div class="qm__opts" data-group="usedBy" data-multi="false" data-advance="no" style="margin:0">
+                  <button type="button" class="qm__opt sel" data-val="Business">Business</button>
+                  <button type="button" class="qm__opt" data-val="Personal">Personal</button>
+                </div>
+              </div>
+            </div>
+            <div class="qm__field" id="fqOrgWrap"><label>Business or organisation name</label><input id="fqOrg" type="text" maxlength="80" placeholder="Business name" autocomplete="organization"></div>
+            <div class="qm__field"><label>Anything else we should know? <span>(optional)</span></label>
+              <textarea id="fqMsg" maxlength="1000" style="min-height:70px" placeholder="E.g. Financing an $80,000 refrigerated truck plus $50,000 working capital on the same facility."></textarea>
+            </div>
+            <p class="qm__consent">No impact to your credit score to see your options. By submitting, you agree to EasyAsset contacting you about your enquiry — free, with no obligation.</p>
+            <p class="qm__err" data-err="4">Please enter your name, a valid email and mobile number.</p>
+          </div>
+
+          <div class="qm__step qm__success" data-step="5">
+            <div class="qm__tick">✓</div>
+            <h3 id="fqDoneTitle">You're all set!</h3>
+            <p id="fqDoneMsg">Your finance enquiry is in — a real EasyAsset broker will be in touch shortly with your options.</p>
+            <ul class="qm__done-list">
+              <li>We compare 50+ lenders for your best rate and structure</li>
+              <li>No impact to your credit score to see your options</li>
+              <li>One broker, start to finish — no call centres, no bots</li>
+            </ul>
+            <div class="qm__xsell" id="fqXsell" hidden>
+              <h4>One more thing — want quotes on the equipment too?</h4>
+              <p>We can also get you competing supplier quotes on your <b id="fqXsellCat">forklift</b> — free, no obligation, and we'll use the details you just gave us.</p>
+              <button type="button" class="btn btn--primary" data-equip-start>Yes, get supplier quotes →</button>
+              <button type="button" class="qm__xsell-no" data-close-finance>No thanks, I'm done</button>
+            </div>
+            <div id="fqDoneActions">
+              <a class="btn btn--primary" href="https://calendar.app.google/gLFJ5hgaYpc1J9na6" target="_blank" rel="noopener">Want it faster? Book a call →</a>
+              <button type="button" class="btn btn--ghost" data-close-finance style="margin-top:.7rem">Done</button>
+            </div>
+          </div>
+
+          <div class="qm__step" data-step="6">
+            <span class="qm__eyebrow">Bonus · supplier quotes</span>
+            <h3 class="qm__q">Get quotes on your <span id="fqEquipQ">equipment</span></h3>
+            <p class="qm__hint">A few quick details and verified suppliers will compete for your business — free, no obligation.</p>
+            <span class="qm__label">Condition</span>
+            <div class="qm__opts cols3" data-group="equipCondition" data-multi="false">
+              <button type="button" class="qm__opt" data-val="New">New</button>
+              <button type="button" class="qm__opt" data-val="Used">Used</button>
+              <button type="button" class="qm__opt" data-val="Either">Either</button>
+            </div>
+            <div class="qm__row2" style="margin-top:.6rem">
+              <div class="qm__field"><label>How many?</label>
+                <select id="fqEquipQty"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6–10</option><option>10+</option></select>
+              </div>
+              <div class="qm__field"><label>Delivery state</label>
+                <select id="fqEquipState"><option value="">Choose…</option><option>NSW</option><option>VIC</option><option>QLD</option><option>SA</option><option>WA</option><option>TAS</option><option>NT</option><option>ACT</option></select>
+              </div>
+            </div>
+            <span class="qm__label">When do you need it?</span>
+            <div class="qm__opts" data-group="equipWhen" data-multi="false">
+              <button type="button" class="qm__opt" data-val="As soon as possible">As soon as possible</button>
+              <button type="button" class="qm__opt" data-val="Within a month">Within a month</button>
+              <button type="button" class="qm__opt" data-val="In the next few months">In the next few months</button>
+              <button type="button" class="qm__opt" data-val="Just researching">Just researching</button>
+            </div>
+            <p class="qm__err" data-err="6">Please choose a condition and a delivery state.</p>
+            <div class="qm__nav" style="margin-top:1.4rem">
+              <button type="button" class="qm__back show" data-equip-back>← Back</button>
+              <button type="button" class="btn btn--primary qm__next" data-equip-submit>Get supplier quotes →</button>
+            </div>
+          </div>
+
+          <div class="qm__step qm__success" data-step="7">
+            <div class="qm__tick">✓</div>
+            <h3>Brilliant — both are in!</h3>
+            <p>Your finance enquiry and your <b id="fqDoneCat">equipment</b> quote request are on their way. Expect to hear from an EasyAsset broker and matched suppliers shortly.</p>
+            <ul class="qm__done-list">
+              <li>50+ lenders compared for your finance</li>
+              <li>Verified suppliers competing on your equipment</li>
+              <li>No credit-score impact · free &amp; no obligation</li>
+            </ul>
+            <button type="button" class="btn btn--primary" data-close-finance>Done</button>
+          </div>
+
+          <div class="qm__nav" id="fqNav">
+            <button type="button" class="qm__back" id="fqBack">← Back</button>
+            <button type="button" class="btn btn--primary qm__next" id="fqNext">Next →</button>
+          </div>
+        </form>
+      </div>
+
+      <aside class="qm__side">
+        <span class="qm__side-logo"><img src="assets/logo.png" alt="EasyAsset"></span>
+        <h4 id="fqSideHead">Compare 50+ lenders, one form</h4>
+        <p class="qm__side-sub" id="fqSideSub">Tell us what you need and a real Aussie broker will come back with tailored finance options — free, with no obligation and no credit-score impact.</p>
+        <ul class="qm__sumlist" id="fqSumList" hidden>
+          <li data-sum="amount" hidden><span>Amount</span><b></b></li>
+          <li data-sum="Timeline" hidden><span>Timeframe</span><b></b></li>
+          <li data-sum="Financing" hidden><span>Used for</span><b></b></li>
+          <li data-sum="Description" hidden><span>Business</span><b></b></li>
+        </ul>
+        <div class="qm__side-foot">
+          <div class="qm__side-trust"><span class="qm__gold">★★★★★</span> <b>5.0</b><span class="qm__trustsub">Loved by Aussie businesses on Google</span></div>
+          <p class="qm__reassure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 11V8a6 6 0 0112 0v3M5 11h14v9H5z" stroke="#9fd9b6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>No impact to your credit score to see options. Your details stay private.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var AUD = new Intl.NumberFormat('en-AU',{style:'currency',currency:'AUD',maximumFractionDigits:0});
+  function pmt(P, ratePct, months){var r=ratePct/100/12; if(r===0) return P/months; return P*r/(1-Math.pow(1+r,-months));}
+  function fmtAmt(v){return v>=500000 ? "$500,000+" : AUD.format(v);}
+
+  /* ----- rotating hero word ----- */
+  var words=["fast","easy","affordable"], wi=0, rot=document.getElementById('rotword');
+  if(rot && !reduce){
+    setInterval(function(){
+      wi=(wi+1)%words.length;
+      rot.style.opacity=0;
+      setTimeout(function(){rot.textContent=words[wi];rot.style.transition="opacity .3s";rot.style.opacity=1;},250);
+    },2860);
+  }
+
+  /* ----- ticker content ----- */
+  var lenders=[["ANZ",6.79],["Judo",7.15],["Plenti",7.49],["Pepper",7.95],["Angle",8.10],["Shift",8.40],["Prospa",9.90],["Lumi",10.50]];
+  var tt=document.getElementById('tickTrack');
+  if(tt){
+    var html="";
+    lenders.forEach(function(l){html+='<span>'+l[0]+' <b>'+l[1].toFixed(2)+'% p.a.</b></span>';});
+    html+='<span>Comparing 50+ lenders in real time</span><span><b>No credit-score impact</b></span>';
+    tt.innerHTML=html;
+    tt.parentNode.querySelectorAll('.ticker__track')[1].innerHTML=html;
+  }
+
+  /* ----- match card ----- */
+  var slider=document.getElementById('mcSlider'),
+      amount=document.getElementById('mcAmount'),
+      go=document.getElementById('mcGo'),
+      form=document.getElementById('mcForm'),
+      results=document.getElementById('mcResults'),
+      back=document.getElementById('mcBack'),
+      mc=document.getElementById('mc'),
+      purpose=document.getElementById('purpose'),
+      curPurpose="Equipment";
+
+  if(slider&&amount){slider.addEventListener('input',function(){amount.textContent=fmtAmt(+slider.value);});}
+  if(purpose){
+    purpose.addEventListener('click',function(e){
+      var b=e.target.closest('.chip'); if(!b)return;
+      purpose.querySelectorAll('.chip').forEach(function(c){c.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true'); curPurpose=b.dataset.p;
+    });
+  }
+
+  function renderMatches(){
+    var P=+slider.value;
+    var lo=pmt(P,6.49,60), hi=pmt(P,13.49,60);
+    document.getElementById('resPay').textContent=AUD.format(Math.round(lo/10)*10)+" – "+AUD.format(Math.round(hi/10)*10);
+    document.getElementById('resTerm').textContent="/ month over 60 months · "+curPurpose;
+    var count=Math.max(4,Math.round(9-(P/500000)*5));
+    document.getElementById('resCount').textContent=count;
+    /* lender list: adjust base rate slightly by amount, sort, take 4 */
+    var adj=Math.min(0.7,(P-5000)/500000*0.7);
+    var rows=lenders.map(function(l){return [l[0], Math.max(5.99,l[1]-adj)];}).sort(function(a,b){return a[1]-b[1];}).slice(0,4);
+    var list=document.getElementById('lenderList'); list.innerHTML="";
+    rows.forEach(function(r,i){
+      var d=document.createElement('div'); d.className='lender';
+      d.style.animationDelay=(reduce?0:i*90)+"ms";
+      d.innerHTML='<span class="lender__name"><span class="lender__dot"></span>'+r[0]+'</span>'+
+                  '<span class="lender__rate">'+r[1].toFixed(2)+'% <small>p.a. comp*</small></span>';
+      list.appendChild(d);
+    });
+  }
+  if(go){
+    go.addEventListener('click',function(){
+      renderMatches();
+      form.style.display='none';
+      results.classList.add('show');
+    });
+  }
+  if(back){
+    back.addEventListener('click',function(){
+      results.classList.remove('show');
+      form.style.display='block';
+    });
+  }
+
+  /* ----- estimator ----- */
+  var es=document.getElementById('estSlider'),
+      ea=document.getElementById('estAmount'),
+      ep=document.getElementById('estPay'),
+      terms=document.getElementById('estTerms'),
+      curTerm=60;
+  function calcEst(){
+    if(!es)return;
+    var P=+es.value, m=pmt(P,6.99,curTerm);
+    if(ea)ea.textContent=fmtAmt(P);
+    if(ep)ep.textContent=AUD.format(Math.round(m/10)*10);
+  }
+  if(es){es.addEventListener('input',calcEst);}
+  if(terms){
+    terms.addEventListener('click',function(e){
+      var b=e.target.closest('.term-btn'); if(!b)return;
+      terms.querySelectorAll('.term-btn').forEach(function(c){c.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true'); curTerm=+b.dataset.t; calcEst();
+    });
+  }
+  calcEst();
+
+  /* ----- finance bar ----- */
+  (function(){
+    var amt=document.getElementById('finAmount'),
+        mo=document.getElementById('finMonthly'),
+        types=document.getElementById('finTypes'),
+        cond=document.getElementById('finCond'),
+        termEl=document.getElementById('finTerm'),
+        termVal=document.getElementById('finTermVal'),
+        go=document.getElementById('finEstimate');
+    if(!amt) return;
+    function parseAmt(){return parseInt((amt.value||'').replace(/[^0-9]/g,''),10)||0;}
+    function rate(){return (cond&&cond.value==='Used')?8.49:6.99;}
+    function term(){return termEl?+termEl.value:60;}
+    function update(){
+      var P=parseAmt();
+      mo.textContent = P>=1000 ? AUD.format(Math.round(pmt(P,rate(),term())/10)*10)+'/mo' : '—';
+    }
+    amt.addEventListener('input',function(){
+      var P=parseAmt();
+      amt.value = P ? P.toLocaleString('en-AU') : '';
+      update();
+    });
+    if(cond) cond.addEventListener('change',update);
+    if(termEl) termEl.addEventListener('input',function(){
+      var m=term();
+      termVal.textContent = m===12 ? '1 yr' : (m%12===0 ? (m/12)+' yrs' : m+' mo');
+      update();
+    });
+    if(types) types.addEventListener('click',function(e){
+      var b=e.target.closest('.ftype'); if(!b) return;
+      types.querySelectorAll('.ftype').forEach(function(x){x.classList.remove('is-on');});
+      b.classList.add('is-on');
+      if(cond){
+        var wc = b.dataset.t==='Working capital';
+        cond.style.display = wc ? 'none' : '';
+        if(wc) cond.selectedIndex=0;
+        update();
+      }
+    });
+  })();
+
+  /* ----- nav scroll state ----- */
+  var nav=document.getElementById('nav');
+  function navState(){if(window.scrollY>60)nav.classList.add('nav--solid');else nav.classList.remove('nav--solid');}
+  navState(); window.addEventListener('scroll',navState,{passive:true});
+
+  /* ----- nav: burger + dropdowns ----- */
+  var burger=document.getElementById('burger');
+  if(burger){burger.addEventListener('click',function(){
+    var open=nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open?'true':'false');
+  });}
+  // dropdown triggers (buttons with a panel) toggle open; works on touch + desktop
+  Array.prototype.forEach.call(document.querySelectorAll('.nav__link'),function(link){
+    var item=link.closest('.nav__item');
+    var hasPanel=item&&item.querySelector('.nav__panel');
+    if(link.tagName==='BUTTON'&&hasPanel){
+      link.addEventListener('click',function(e){
+        e.stopPropagation();
+        var wasOpen=item.classList.contains('open');
+        document.querySelectorAll('.nav__item.open').forEach(function(o){if(o!==item)o.classList.remove('open');});
+        item.classList.toggle('open',!wasOpen);
+        link.setAttribute('aria-expanded',!wasOpen?'true':'false');
+      });
+    } else {
+      // plain link closes the mobile menu on navigate
+      link.addEventListener('click',function(){nav.classList.remove('open');});
+    }
+  });
+  // panel link closes everything
+  Array.prototype.forEach.call(document.querySelectorAll('.nav__panel a'),function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');document.querySelectorAll('.nav__item.open').forEach(function(o){o.classList.remove('open');});});
+  });
+  // click outside closes open dropdowns
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.nav__item')){document.querySelectorAll('.nav__item.open').forEach(function(o){o.classList.remove('open');});}
+  });
+
+  /* ----- carousels (scoped per instance) ----- */
+  function initCarousel(trackId, dotsId, auto){
+    var track=document.getElementById(trackId); if(!track) return;
+    var box=track.closest('.carousel');
+    var cards=Array.prototype.slice.call(track.children);
+    var dotsWrap=document.getElementById(dotsId);
+    var idx=0, timer=null;
+    var base=function(){return cards[0]?cards[0].offsetLeft:0;};
+    if(dotsWrap){
+      cards.forEach(function(c,i){
+        var b=document.createElement('button');
+        b.setAttribute('aria-label','Go to item '+(i+1));
+        if(i===0)b.className='active';
+        b.addEventListener('click',function(){go(i);});
+        dotsWrap.appendChild(b);
+      });
+    }
+    var dots=dotsWrap?Array.prototype.slice.call(dotsWrap.children):[];
+    function setActive(i){idx=i;dots.forEach(function(d,j){d.classList.toggle('active',j===i);});}
+    function go(i){
+      i=(i+cards.length)%cards.length;
+      var target=cards[i].offsetLeft-base();
+      if(reduce)track.scrollLeft=target; else track.scrollTo({left:target,behavior:'smooth'});
+      setActive(i);
+    }
+    var st;
+    track.addEventListener('scroll',function(){
+      clearTimeout(st);
+      st=setTimeout(function(){
+        var pos=track.scrollLeft,best=0,bd=1e9;
+        cards.forEach(function(c,i){var d=Math.abs((c.offsetLeft-base())-pos); if(d<bd){bd=d;best=i;}});
+        setActive(best);
+      },90);
+    },{passive:true});
+    var prev=box&&box.querySelector('.carousel__arrow.prev'), next=box&&box.querySelector('.carousel__arrow.next');
+    if(prev)prev.addEventListener('click',function(){go(idx-1);});
+    if(next)next.addEventListener('click',function(){go(idx+1);});
+    if(auto){
+      var start=function(){if(reduce)return; stop(); timer=setInterval(function(){go(idx+1);},5000);};
+      var stop=function(){if(timer){clearInterval(timer);timer=null;}};
+      if(box){box.addEventListener('mouseenter',stop);box.addEventListener('mouseleave',start);box.addEventListener('pointerdown',stop);box.addEventListener('touchstart',stop,{passive:true});}
+      start();
+    }
+  }
+  initCarousel('revTrack','revDots',true);
+  initCarousel('solTrack','solDots',false);
+
+
+  /* ----- reveal + stagger ----- */
+  var revs=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          var el=en.target;
+          if(el.hasAttribute('data-stagger')){
+            Array.prototype.forEach.call(el.children,function(ch,i){ch.style.transitionDelay=(i*70)+"ms";});
+          }
+          el.classList.add('in'); io.unobserve(el);
+        }
+      });
+    },{threshold:.12});
+    revs.forEach(function(r){io.observe(r);});
+  } else {
+    revs.forEach(function(r){r.classList.add('in');});
+  }
+
+  /* ----- count up ----- */
+  var nums=document.querySelectorAll('[data-count]');
+  function countUp(el){
+    var target=parseFloat(el.dataset.count), dec=parseInt(el.dataset.dec||0,10), dur=1300, t0=null;
+    if(reduce){el.textContent=target.toFixed(dec);return;}
+    function step(ts){
+      if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1);
+      var eased=1-Math.pow(1-p,3);
+      el.textContent=(target*eased).toFixed(dec);
+      if(p<1)requestAnimationFrame(step); else el.textContent=target.toFixed(dec);
+    }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var io2=new IntersectionObserver(function(es2){
+      es2.forEach(function(en){if(en.isIntersecting){countUp(en.target);io2.unobserve(en.target);}});
+    },{threshold:.5});
+    nums.forEach(function(n){io2.observe(n);});
+  } else { nums.forEach(function(n){n.textContent=parseFloat(n.dataset.count).toFixed(parseInt(n.dataset.dec||0,10));}); }
+
+  /* ----- lenders marquee: tap/click toggles pause (hover pause is CSS) ----- */
+  var logosM=document.getElementById('logosMarquee');
+  if(logosM){ logosM.addEventListener('click',function(){ logosM.classList.toggle('paused'); }); }
+
+})();
+</script>
+<script>
+/* ===== FINANCE QUOTE WIZARD ===== */
+(function(){
+  var modal=document.getElementById('fqModal'); if(!modal) return;
+  var form=document.getElementById('fqForm');
+  var steps=Array.prototype.slice.call(form.querySelectorAll('.qm__step'));
+  var bar=document.getElementById('fqBar');
+  var backBtn=document.getElementById('fqBack'), nextBtn=document.getElementById('fqNext'), nav=document.getElementById('fqNav');
+  var fqName=document.getElementById('fqName'), fqEmail=document.getElementById('fqEmail'), fqPhone=document.getElementById('fqPhone');
+  var TOTAL=4, cur=1, picks={};
+  /* finbar loan type -> "What will the finance be used for?" option (pill pre-fill) */
+  var TYPE_FIN={'Equipment':'Equipment / Trucks','Vehicle':'Vehicles / Utes','Truck':'Equipment / Trucks','Fit-out':'Property / Fit-out','Commercial':'Property / Fit-out','Working capital':'Working Capital'};
+
+  function bracketFor(n){
+    if(n<20000) return 'Less than $20,000';
+    if(n<100000) return '$20,000 to $99,000';
+    if(n<300000) return '$100,000 to $299,000';
+    return '$300,000+';
+  }
+  function valEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  function setSum(key,val){
+    var li=document.querySelector('#fqSumList li[data-sum="'+key+'"]'); if(!li) return;
+    if(val){ li.hidden=false; li.querySelector('b').textContent=val; } else { li.hidden=true; }
+  }
+  function updateSummary(){
+    var fin = (Array.isArray(picks.Financing)&&picks.Financing.length) ? picks.Financing.join(', ') : '';
+    setSum('amount', picks.amount||'');
+    setSum('Timeline', picks.Timeline||'');
+    setSum('Financing', fin);
+    setSum('Description', picks.Description||'');
+    var any = picks.amount||picks.Timeline||fin||picks.Description;
+    var list=document.getElementById('fqSumList'); if(list) list.hidden=!any;
+    var head=document.getElementById('fqSideHead'), sub=document.getElementById('fqSideSub');
+    if(any){ head.textContent='Finding your best finance options'; if(sub) sub.hidden=true; }
+    else { head.textContent='Compare 50+ lenders, one form'; if(sub) sub.hidden=false; }
+  }
+  function clearErr(){ steps.forEach(function(s){ var e=s.querySelector('.qm__err'); if(e) e.classList.remove('show'); }); }
+  function err(n){ var s=steps.filter(function(x){return +x.getAttribute('data-step')===n;})[0]; var e=s&&s.querySelector('.qm__err'); if(e) e.classList.add('show'); }
+
+  function showStep(n){
+    cur=n;
+    steps.forEach(function(s){ s.classList.toggle('on', +s.getAttribute('data-step')===n); });
+    bar.style.width=(Math.min(n,TOTAL)/TOTAL*100)+'%';
+    if(n>TOTAL){ nav.style.display='none'; }
+    else {
+      nav.style.display='flex';
+      backBtn.classList.toggle('show', n>1);
+      nextBtn.textContent=(n===TOTAL)?'Get my options →':'Next →';
+    }
+    var main=modal.querySelector('.qm__main'); if(main) main.scrollTop=0;
+    updateSummary();
+  }
+  function goNext(){ if(cur<TOTAL) showStep(cur+1); }
+  function goBack(){ if(cur>1) showStep(cur-1); }
+
+  function validate(n){
+    clearErr();
+    if(n===1 && (!picks.amount || !picks.Timeline)){ err(1); return false; }
+    if(n===2 && !(Array.isArray(picks.Financing)&&picks.Financing.length)){ err(2); return false; }
+    if(n===3 && (!picks.Description || !picks.PropertyOwner || !picks.PreviousLoan)){ err(3); return false; }
+    if(n===4){
+      var nm=fqName.value.trim(), em=fqEmail.value.trim(), ph=fqPhone.value.replace(/[^0-9]/g,'');
+      if(!nm || !valEmail(em) || ph.length<8){ err(4); return false; }
+    }
+    return true;
+  }
+  function toggleEquipWrap(){
+    var ew=document.getElementById('fqEquipWrap'); if(!ew) return;
+    var hasEq=Array.isArray(picks.Financing)&&picks.Financing.indexOf('Equipment / Trucks')>-1;
+    ew.hidden=!hasEq;
+    if(!hasEq){ var ec=document.getElementById('fqEquipCat'); if(ec) ec.value=''; picks.equipCat=''; }
+  }
+  function configureSuccess(){
+    var cat=picks.equipCat, xsell=document.getElementById('fqXsell'), actions=document.getElementById('fqDoneActions');
+    if(cat){ var cn=document.getElementById('fqXsellCat'); if(cn) cn.textContent=cat.toLowerCase(); if(xsell) xsell.hidden=false; if(actions) actions.hidden=true; }
+    else { if(xsell) xsell.hidden=true; if(actions) actions.hidden=false; }
+  }
+  function submit(){
+    if(!validate(4)) return;
+    var name=(fqName.value.trim().split(' ')[0])||'there';
+    document.getElementById('fqDoneTitle').textContent="You're all set, "+name+"!";
+    configureSuccess();
+    showStep(5); bar.style.width='100%';
+  }
+  function openEquip(){
+    var cat=picks.equipCat||'your equipment';
+    var q=document.getElementById('fqEquipQ'); if(q) q.textContent=cat.toLowerCase();
+    showStep(6);
+  }
+  function submitEquip(){
+    clearErr();
+    var st=document.getElementById('fqEquipState');
+    if(!picks.equipCondition || !(st && st.value)){ err(6); return; }
+    var dc=document.getElementById('fqDoneCat'); if(dc) dc.textContent=(picks.equipCat||'equipment').toLowerCase();
+    showStep(7);
+  }
+
+  /* option selection (single = auto-advance, multi = toggle) */
+  form.addEventListener('click', function(e){
+    var opt=e.target.closest('.qm__opt'); if(!opt) return;
+    var group=opt.closest('.qm__opts'); if(!group) return;
+    var key=group.getAttribute('data-group');
+    var multi=group.getAttribute('data-multi')==='true';
+    if(multi){
+      opt.classList.toggle('sel');
+      picks[key]=Array.prototype.slice.call(group.querySelectorAll('.qm__opt.sel')).map(function(o){return o.getAttribute('data-val');});
+      if(key==='Financing') toggleEquipWrap();
+      clearErr(); updateSummary();
+      return;
+    }
+    group.querySelectorAll('.qm__opt').forEach(function(o){o.classList.remove('sel');});
+    opt.classList.add('sel');
+    picks[key]=opt.getAttribute('data-val');
+    if(key==='usedBy'){ var org=document.getElementById('fqOrgWrap'); if(org) org.style.display=(picks.usedBy==='Business')?'':'none'; }
+    clearErr(); updateSummary();
+  });
+
+  if(nextBtn) nextBtn.addEventListener('click', function(){ if(cur===TOTAL){ submit(); return; } if(!validate(cur)) return; goNext(); });
+  if(backBtn) backBtn.addEventListener('click', goBack);
+
+  function resetForm(){
+    picks={};
+    form.querySelectorAll('.qm__opt.sel').forEach(function(o){o.classList.remove('sel');});
+    clearErr();
+    ['fqMsg','fqName','fqEmail','fqPhone','fqOrg'].forEach(function(id){var el=document.getElementById(id); if(el) el.value='';});
+    var ec=document.getElementById('fqEquipCat'); if(ec) ec.value='';
+    var ew=document.getElementById('fqEquipWrap'); if(ew) ew.hidden=true;
+    var eqq=document.getElementById('fqEquipQty'); if(eqq) eqq.selectedIndex=0;
+    var eqs=document.getElementById('fqEquipState'); if(eqs) eqs.selectedIndex=0;
+    var ub=form.querySelector('.qm__opts[data-group="usedBy"]');
+    if(ub){ ub.querySelectorAll('.qm__opt').forEach(function(o){o.classList.toggle('sel', o.getAttribute('data-val')==='Business');}); }
+    picks.usedBy='Business';
+    var org=document.getElementById('fqOrgWrap'); if(org) org.style.display='';
+  }
+  function openFinance(opts){
+    opts=opts||{};
+    resetForm();
+    if(opts.amount){
+      var a=form.querySelector('.qm__opts[data-group="amount"] .qm__opt[data-val="'+opts.amount+'"]');
+      if(a){ a.classList.add('sel'); picks.amount=opts.amount; }
+    }
+    if(opts.financing && opts.financing.length){
+      var grp=form.querySelector('.qm__opts[data-group="Financing"]'), got=[];
+      opts.financing.forEach(function(v){ var b=grp.querySelector('.qm__opt[data-val="'+v+'"]'); if(b){ b.classList.add('sel'); got.push(v); } });
+      if(got.length) picks.Financing=got;
+    }
+    toggleEquipWrap();
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('qm-lock');
+    showStep(1);
+  }
+  function closeFinance(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('qm-lock'); }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-open-finance]'), function(t){
+    t.addEventListener('click', function(e){
+      e.preventDefault();
+      var amount='', financing=[];
+      var src=t.getAttribute('data-amount-from');
+      if(src){ var sel=document.getElementById(src); if(sel && sel.value) amount=sel.value; }
+      /* triggers inside the hero finbar carry the typed amount + selected loan type */
+      if(t.id==='finEstimate' || (t.closest && t.closest('#finbar'))){
+        if(!amount){ var fa=document.getElementById('finAmount'); if(fa){ var n=parseInt((fa.value||'').replace(/[^0-9]/g,''),10); if(n) amount=bracketFor(n); } }
+        var act=document.querySelector('#finTypes .ftype.is-on'); if(act){ var f=TYPE_FIN[act.getAttribute('data-t')]; if(f) financing=[f]; }
+      }
+      openFinance({amount:amount, financing:financing});
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-close-finance]'), function(t){ t.addEventListener('click', closeFinance); });
+  var ecSel=document.getElementById('fqEquipCat');
+  if(ecSel) ecSel.addEventListener('change', function(){ picks.equipCat=ecSel.value; });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-equip-start]'), function(el){ el.addEventListener('click', openEquip); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-equip-back]'), function(el){ el.addEventListener('click', function(){ showStep(5); }); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-equip-submit]'), function(el){ el.addEventListener('click', submitEquip); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && modal.classList.contains('open')) closeFinance(); });
+})();
+</script>
+</body>
+</html>
