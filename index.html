@@ -42,7 +42,11 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--green-deep) transparent}
+html::-webkit-scrollbar{width:12px}
+html::-webkit-scrollbar-track{background:transparent}
+html::-webkit-scrollbar-thumb{background:var(--green-deep);border-radius:8px;border:3px solid var(--paper);background-clip:padding-box}
+html::-webkit-scrollbar-thumb:hover{background:var(--forest);border:3px solid var(--paper);background-clip:padding-box}
 body{
   font-family:var(--f-body);
   color:var(--ink);
@@ -635,7 +639,7 @@ body.qm-lock{overflow:hidden}
         </div>
       </div>
       <div class="nav__item">
-        <button class="nav__link" type="button" aria-expanded="false">Marketplace <svg class="nav__caret" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <a class="nav__link" href="marketplace.html">Marketplace <svg class="nav__caret" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav__panel">
           <a href="marketplace.html#markets">EasyAsset Industrial</a>
           <a href="marketplace.html#markets">EasyAsset Medical</a>
