@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner sign in — EasyAsset Finance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#107040;--green-deep:#14B866;--green:#2AF48F;--mint-200:#83FFC1;--mint-100:#B3FFD9;--mint-50:#DBFFED;
+  --ink:#0c1f14;--ink-soft:#47655a;--paper:#fff;--paper-tint:#f4faf6;--line:#e2efe7;--btn-text:#08160d;
+  --r-pill:12px;
+  --f-display:"Bricolage Grotesque",system-ui,sans-serif;--f-body:"Plus Jakarta Sans",system-ui,sans-serif;--f-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--f-body);color:var(--ink);background:#eceef1;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.auth-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem clamp(1.25rem,5vw,2.5rem);background:#fff;border-bottom:1px solid var(--line)}
+.auth-logo{display:flex;align-items:center;gap:.55rem}
+.auth-logo img{height:30px}
+.auth-logo span{font-family:var(--f-mono);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--forest);background:var(--mint-50);padding:.28rem .55rem;border-radius:6px}
+.auth-back{font-size:.88rem;font-weight:600;color:var(--ink-soft)}
+.auth-back:hover{color:var(--forest)}
+.auth-wrap{min-height:calc(100vh - 63px);display:grid;place-items:center;padding:2.5rem 1rem}
+.auth{width:100%;max-width:440px;background:#fff;border-radius:18px;box-shadow:0 30px 60px -30px rgba(12,31,20,.28),0 2px 10px rgba(12,31,20,.05);padding:clamp(1.8rem,4vw,2.6rem)}
+.auth h1{font-family:var(--f-display);font-weight:800;font-size:clamp(1.5rem,4vw,1.8rem);text-align:center;color:var(--ink);margin-bottom:.35rem}
+.auth__sub{text-align:center;color:var(--ink-soft);font-size:.92rem;margin-bottom:1.5rem;line-height:1.5}
+.auth__field{margin-bottom:.75rem}
+.auth input,.auth select{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:.85rem .95rem;font-family:inherit;font-size:.98rem;color:var(--ink);background:#fff;transition:border-color .15s,box-shadow .15s}
+.auth select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'><path d='M6 9l6 6 6-6' stroke='%2347655a' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-repeat:no-repeat;background-position:right .85rem center;background-size:16px;padding-right:2.4rem;cursor:pointer;color:var(--ink-soft)}
+.auth input::placeholder{color:#9aa8a0}
+.auth input:focus,.auth select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(42,244,143,.18)}
+.auth__row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.auth__forgot{display:block;text-align:right;font-size:.85rem;color:var(--forest);font-weight:600;margin:.25rem 0 1rem}
+.auth__forgot:hover{text-decoration:underline}
+.btn-primary{display:flex;align-items:center;justify-content:center;width:100%;font-family:inherit;font-weight:700;font-size:1rem;color:var(--btn-text);background:var(--green);border:none;border-radius:var(--r-pill);padding:.95rem 1.4rem;cursor:pointer;box-shadow:0 10px 24px -10px rgba(42,244,143,.7);transition:.15s;margin-top:.3rem}
+.btn-primary:hover{background:var(--green-deep);transform:translateY(-1px)}
+.auth__divider{display:flex;align-items:center;gap:.8rem;color:var(--ink-soft);font-size:.8rem;margin:1.15rem 0}
+.auth__divider::before,.auth__divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.auth__sso{display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;border:1.5px solid var(--line);border-radius:10px;padding:.78rem;background:#fff;font-family:inherit;font-weight:600;font-size:.95rem;color:var(--ink);cursor:pointer;transition:.15s;margin-bottom:.65rem}
+.auth__sso:hover{border-color:var(--mint-200);background:var(--paper-tint)}
+.auth__sso svg{width:20px;height:20px;flex-shrink:0}
+.auth__alt{text-align:center;font-size:.9rem;color:var(--ink-soft);margin-top:1rem}
+.auth__alt a{color:var(--forest);font-weight:700;cursor:pointer}
+.auth__alt a:hover{text-decoration:underline}
+.auth__note{margin-top:1.1rem;text-align:center;font-size:.75rem;color:var(--ink-soft);line-height:1.5}
+[hidden]{display:none!important}
+@media(max-width:460px){.auth__row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="auth-top">
+  <a class="auth-logo" href="index.html"><img src="assets/logo.png" alt="EasyAsset"><span>Finance Partners</span></a>
+  <a class="auth-back" href="index.html">← Back to site</a>
+</header>
+<div class="auth-wrap">
+
+  <!-- SIGN IN -->
+  <div class="auth" id="signin">
+    <h1>Partner sign in</h1>
+    <p class="auth__sub">Access your EasyAsset finance partner dashboard.</p>
+    <form onsubmit="return false">
+      <div class="auth__field"><input type="email" placeholder="Work email" autocomplete="email"></div>
+      <div class="auth__field"><input type="password" placeholder="Password" autocomplete="current-password"></div>
+      <a class="auth__forgot" href="#">Forgot password?</a>
+      <button class="btn-primary" type="submit">Sign in</button>
+    </form>
+    <div class="auth__divider">or</div>
+    <button class="auth__sso" type="button"><svg viewBox="0 0 48 48"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7C13.4 14.6 18.3 10.8 24 10.8z"/></svg>Continue with Google</button>
+    <button class="auth__sso" type="button"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="9.2" height="9.2" fill="#F25022"/><rect x="12.8" y="2" width="9.2" height="9.2" fill="#7FBA00"/><rect x="2" y="12.8" width="9.2" height="9.2" fill="#00A4EF"/><rect x="12.8" y="12.8" width="9.2" height="9.2" fill="#FFB900"/></svg>Continue with Microsoft</button>
+    <p class="auth__alt">New to the partner program? <a data-to="signup">Become a partner</a></p>
+  </div>
+
+  <!-- SIGN UP -->
+  <div class="auth" id="signup" hidden>
+    <h1>Become a finance partner</h1>
+    <p class="auth__sub">Refer clients who need finance and earn a commission on every deal that settles — no cost to join.</p>
+    <form onsubmit="return false">
+      <div class="auth__row">
+        <div class="auth__field"><input type="text" placeholder="First name" autocomplete="given-name"></div>
+        <div class="auth__field"><input type="text" placeholder="Last name" autocomplete="family-name"></div>
+      </div>
+      <div class="auth__field"><input type="email" placeholder="Work email" autocomplete="email"></div>
+      <div class="auth__field"><input type="text" placeholder="Firm / company name" autocomplete="organization"></div>
+      <div class="auth__field"><input type="tel" placeholder="Phone" autocomplete="tel"></div>
+      <div class="auth__field"><select><option value="" disabled selected>I'm a…</option><option>Accountant</option><option>Finance broker</option><option>Mortgage broker</option><option>Supplier / dealer</option><option>Other</option></select></div>
+      <div class="auth__field"><input type="password" placeholder="Create password" autocomplete="new-password"></div>
+      <div class="auth__field"><input type="password" placeholder="Confirm password" autocomplete="new-password"></div>
+      <button class="btn-primary" type="submit">Create partner account</button>
+    </form>
+    <div class="auth__divider">or</div>
+    <button class="auth__sso" type="button"><svg viewBox="0 0 48 48"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2 5.1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.6-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.5 2.1-5.7 0-10.6-3.9-12.3-9.1H4.3v5.7C8 41.1 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.7 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.3C2.9 17.1 2 20.4 2 24s.9 6.9 2.3 9.9l7.4-5.7z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.2 29.9 2 24 2 15.4 2 8 6.9 4.3 14.1l7.4 5.7C13.4 14.6 18.3 10.8 24 10.8z"/></svg>Sign up with Google</button>
+    <button class="auth__sso" type="button"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="9.2" height="9.2" fill="#F25022"/><rect x="12.8" y="2" width="9.2" height="9.2" fill="#7FBA00"/><rect x="2" y="12.8" width="9.2" height="9.2" fill="#00A4EF"/><rect x="12.8" y="12.8" width="9.2" height="9.2" fill="#FFB900"/></svg>Sign up with Microsoft</button>
+    <p class="auth__alt">Already a partner? <a data-to="signin">Sign in</a></p>
+    <p class="auth__note">By joining you agree to EasyAsset's partner terms. Commission is paid on settled referrals.</p>
+  </div>
+
+</div>
+<script>
+(function(){
+  var si=document.getElementById('signin'), su=document.getElementById('signup');
+  function show(which){ var up=which==='signup'; si.hidden=up; su.hidden=!up; window.scrollTo(0,0); }
+  document.querySelectorAll('[data-to]').forEach(function(a){ a.addEventListener('click',function(){ show(a.getAttribute('data-to')); }); });
+  if(/(create|signup|join)/i.test(location.hash+location.search)) show('signup');
+})();
+</script>
+</body>
+</html>
