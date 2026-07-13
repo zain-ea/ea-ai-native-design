@@ -97,6 +97,9 @@ h2{font-size:clamp(2rem,4vw,3.05rem)}
 .nav__panel a:hover{background:var(--mint-50);color:var(--forest)}
 .nav__tag{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.05em;color:var(--forest);background:var(--mint-50);padding:.15rem .42rem;border-radius:6px;text-transform:uppercase;font-weight:600}
 .nav__cta{display:flex;align-items:center;gap:1.1rem}
+.nav__login{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-family:inherit;font-weight:700;font-size:1rem;color:var(--ink);background:#fff;padding:calc(.95rem - 1.5px) calc(1.5rem - 1.5px);border:1.5px solid var(--line);border-radius:var(--r-pill);cursor:pointer;transition:.15s;white-space:nowrap}
+.nav__login:hover{border-color:var(--mint-200);background:var(--paper-tint);color:var(--forest)}
+.nav__login svg{width:17px;height:17px}
 .nav__phone{font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.4rem;white-space:nowrap}
 .nav__burger{display:none;width:42px;height:42px;border-radius:8px;align-items:center;justify-content:center;color:inherit}
 .nav__burger span,.nav__burger span::before,.nav__burger span::after{content:"";display:block;width:20px;height:2px;background:currentColor;position:relative;transition:.2s}
@@ -299,7 +302,7 @@ h2{font-size:clamp(2rem,4vw,3.05rem)}
 }
 @media(max-width:720px){.discover__grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){
-  .nav__cta .btn{display:none}
+  .nav__cta .btn,.nav__login{display:none}
   .markets,.stats__grid,.steps,.foot__top{grid-template-columns:1fr}
   .eco{grid-template-columns:repeat(2,1fr)}
   .carousel__arrow{display:none}
@@ -431,6 +434,54 @@ body.qm-lock{overflow:hidden}
 .qm__fin-note{font-size:.68rem;color:#9fd9b6;line-height:1.4;margin-bottom:.65rem}
 .qm__fin-toggle{display:flex;gap:.5rem;align-items:center;font-size:.82rem;color:#eafff1;font-weight:600;cursor:pointer;line-height:1.35}
 .qm__fin-toggle input{accent-color:var(--green);width:16px;height:16px;flex-shrink:0}
+/* ============ IZZY AI CHATBOT ============ */
+.izzy{position:fixed;right:22px;bottom:22px;z-index:150;font-family:var(--f-body)}
+.izzy__launch{position:relative;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(140deg,var(--green),var(--green-deep));color:var(--btn-text);box-shadow:0 14px 32px -8px rgba(20,184,102,.55);display:grid;place-items:center;transition:transform .2s}
+.izzy__launch:hover{transform:translateY(-3px) scale(1.05)}
+.izzy__launch svg{width:28px;height:28px;display:block}
+@keyframes izzyPulse{0%{box-shadow:0 0 0 0 rgba(42,244,143,.5)}70%{box-shadow:0 0 0 15px rgba(42,244,143,0)}100%{box-shadow:0 0 0 0 rgba(42,244,143,0)}}
+.izzy__ic-close{display:none}
+.izzy.open .izzy__ic-open{display:none}
+.izzy.open .izzy__ic-close{display:block}
+.izzy__badge{position:absolute;top:-3px;right:-3px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:#e5484d;color:#fff;font-size:.68rem;font-weight:700;display:grid;place-items:center;border:2px solid #fff}
+.izzy.open .izzy__badge{display:none}
+.izzy__panel{position:absolute;right:0;bottom:76px;width:min(384px,calc(100vw - 32px));height:min(560px,calc(100vh - 130px));background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;overflow:hidden;transform-origin:bottom right;opacity:0;visibility:hidden;transform:translateY(14px) scale(.97);transition:.22s ease}
+.izzy.open .izzy__panel{opacity:1;visibility:visible;transform:none}
+.izzy__head{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.95rem 1.05rem;background:linear-gradient(150deg,var(--hero-1),#0a3a18);color:#fff;flex-shrink:0}
+.izzy__id{display:flex;align-items:center;gap:.6rem}
+.izzy__avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(140deg,var(--green),var(--mint-200));display:grid;place-items:center;color:#08160d;flex-shrink:0}
+.izzy__avatar svg{width:22px;height:22px}
+.izzy__meta b{font-family:var(--f-display);font-size:1.02rem;line-height:1.15;display:block}
+.izzy__meta small{font-size:.73rem;color:#bfeccb;display:flex;align-items:center;gap:.35rem}
+.izzy__live{width:7px;height:7px;border-radius:50%;background:#39d98a;animation:izzyPulse 2s infinite}
+.izzy__close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;border:none;cursor:pointer;display:grid;place-items:center;transition:.15s}
+.izzy__close svg{width:16px;height:16px;display:block}
+.izzy__close:hover{background:rgba(255,255,255,.3)}
+.izzy__body{flex:1;overflow-y:auto;padding:1.05rem;display:flex;flex-direction:column;gap:.6rem;background:var(--paper-tint);scrollbar-width:thin;scrollbar-color:var(--green-deep) transparent}
+.izzy__body::-webkit-scrollbar{width:10px}
+.izzy__body::-webkit-scrollbar-thumb{background:var(--green-deep);border-radius:8px;border:3px solid var(--paper-tint);background-clip:padding-box}
+.izzy__msg{max-width:84%;padding:.68rem .9rem;border-radius:15px;font-size:.9rem;line-height:1.45;animation:izzyIn .25s ease;white-space:pre-wrap}
+@keyframes izzyIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.izzy__msg--bot{align-self:flex-start;background:#fff;color:var(--ink);border:1px solid var(--line);border-bottom-left-radius:5px}
+.izzy__msg--user{align-self:flex-end;background:var(--forest);color:#fff;border-bottom-right-radius:5px}
+.izzy__typing{align-self:flex-start;display:flex;gap:4px;padding:.75rem .9rem;background:#fff;border:1px solid var(--line);border-radius:15px}
+.izzy__typing i{width:7px;height:7px;border-radius:50%;background:var(--ink-soft);animation:izzyBlink 1.2s infinite}
+.izzy__typing i:nth-child(2){animation-delay:.18s}.izzy__typing i:nth-child(3){animation-delay:.36s}
+@keyframes izzyBlink{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.izzy__chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:.6rem 1.05rem 0;background:#fff;flex-shrink:0}
+.izzy__chip{font-family:inherit;font-size:.8rem;font-weight:600;color:var(--forest);background:var(--mint-50);border:1px solid var(--mint-100);padding:.4rem .75rem;border-radius:20px;cursor:pointer;transition:.15s}
+.izzy__chip:hover{background:var(--mint-100)}
+.izzy__composer{display:flex;align-items:center;gap:.4rem;padding:.65rem .75rem;border-top:1px solid var(--line);background:#fff;flex-shrink:0}
+#izzyInput{flex:1;border:none;outline:none;font-family:inherit;font-size:.92rem;padding:.5rem .35rem;color:var(--ink);background:transparent;min-width:0}
+.izzy__mic,.izzy__send{width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;display:grid;place-items:center;flex-shrink:0;transition:.15s}
+.izzy__mic{background:var(--mint-50);color:var(--forest)}
+.izzy__mic:hover{background:var(--mint-100)}
+.izzy__mic.rec{background:#e5484d;color:#fff;animation:izzyPulse 1.3s infinite}
+.izzy__send{background:var(--green);color:var(--btn-text)}
+.izzy__send:hover{background:var(--green-deep)}
+.izzy__mic svg,.izzy__send svg{width:18px;height:18px}
+.izzy__foot{text-align:center;font-size:.66rem;color:var(--ink-soft);padding:.35rem 0 .5rem;background:#fff;flex-shrink:0}
+@media(max-width:620px){.izzy{right:14px;bottom:86px}.izzy__panel{width:calc(100vw - 28px);height:min(66vh,520px)}}
 </style>
 </head>
 <body>
@@ -470,6 +521,7 @@ body.qm-lock{overflow:hidden}
     </nav>
     <div class="nav__cta">
       <a class="nav__phone" href="tel:1300788373"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span>1300 788 373</span></a>
+      <button class="nav__login" type="button" aria-label="Partner login"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M5 20c0-3.6 3.1-5.6 7-5.6s7 2 7 5.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Log in</button>
       <a class="btn btn--primary" href="#quote" data-open-quote>Get quotes</a>
       <button class="nav__burger" id="burger" aria-label="Menu"><span></span></button>
     </div>
@@ -1234,6 +1286,81 @@ body.qm-lock{overflow:hidden}
     },5000);
   })();
 
+})();
+</script>
+<!-- IZZY AI CHATBOT -->
+<div class="izzy" id="izzy" data-greeting="Hi, I'm Izzy 👋 EasyAsset's AI assistant. I can help you find equipment, line up competing supplier quotes, or arrange finance. What are you after?">
+  <div class="izzy__panel" id="izzyPanel" role="dialog" aria-label="Chat with Izzy">
+    <div class="izzy__head">
+      <div class="izzy__id">
+        <span class="izzy__avatar"><svg viewBox="0 0 24 24" fill="none"><rect x="4.5" y="8" width="15" height="11" rx="3.2" stroke="currentColor" stroke-width="1.7"/><path d="M12 8V4.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="3.4" r="1.4" stroke="currentColor" stroke-width="1.5"/><circle cx="9.3" cy="13.2" r="1.3" fill="currentColor"/><circle cx="14.7" cy="13.2" r="1.3" fill="currentColor"/></svg></span>
+        <span class="izzy__meta"><b>Izzy</b><small><span class="izzy__live"></span> EasyAsset AI assistant</small></span>
+      </div>
+      <button class="izzy__close" id="izzyClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="izzy__body" id="izzyBody"></div>
+    <div class="izzy__chips" id="izzyChips">
+      <button type="button" class="izzy__chip">Find equipment</button>
+      <button type="button" class="izzy__chip">Get competing quotes</button>
+      <button type="button" class="izzy__chip">Talk to a broker</button>
+    </div>
+    <form class="izzy__composer" id="izzyForm">
+      <button type="button" class="izzy__mic" id="izzyMic" aria-label="Talk to Izzy"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21M8.5 21h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      <input type="text" id="izzyInput" placeholder="Message Izzy…" autocomplete="off">
+      <button type="submit" class="izzy__send" aria-label="Send"><svg viewBox="0 0 24 24" fill="none"><path d="M4.5 11.5l15-7-7 15-2.2-5.8-5.8-2.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
+    </form>
+    <div class="izzy__foot">Izzy is an AI assistant · demo</div>
+  </div>
+  <button class="izzy__launch" id="izzyBtn" type="button" aria-label="Chat with Izzy">
+    <span class="izzy__ic-open"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A1.5 1.5 0 015.5 4h13A1.5 1.5 0 0120 5.5v9A1.5 1.5 0 0118.5 16H9l-4 3.5V5.5z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="9" cy="10" r="1.1" fill="currentColor"/><circle cx="12" cy="10" r="1.1" fill="currentColor"/><circle cx="15" cy="10" r="1.1" fill="currentColor"/></svg></span>
+    <span class="izzy__ic-close"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></svg></span>
+    <span class="izzy__badge">1</span>
+  </button>
+</div>
+<script>
+(function(){
+  var root=document.getElementById('izzy'); if(!root) return;
+  var btn=document.getElementById('izzyBtn'), closeBtn=document.getElementById('izzyClose'),
+      body=document.getElementById('izzyBody'), form=document.getElementById('izzyForm'),
+      input=document.getElementById('izzyInput'), mic=document.getElementById('izzyMic'),
+      chips=document.getElementById('izzyChips');
+  var greeted=false, voiceMode=false;
+  function sc(){ body.scrollTop=body.scrollHeight; }
+  function addMsg(t,who){ var d=document.createElement('div'); d.className='izzy__msg izzy__msg--'+who; d.textContent=t; body.appendChild(d); sc(); }
+  function botSay(t,speak){
+    var ti=document.createElement('div'); ti.className='izzy__typing'; ti.innerHTML='<i></i><i></i><i></i>'; body.appendChild(ti); sc();
+    setTimeout(function(){ ti.remove(); addMsg(t,'bot'); if(speak) say(t); }, 650+Math.min(t.length*10,700));
+  }
+  function respond(q){
+    q=q.toLowerCase(); var r;
+    if(/equip|buy|forklift|excavat|truck|machine|supplier|quote|purchas|coolroom|kitchen|category/.test(q)) r="Tell me what you're after and I'll match you with verified suppliers who compete for your business. Shall I start a quote request?";
+    else if(/financ|loan|repay|lend|rate|borrow|fund/.test(q)) r="I can compare 50+ Australian lenders for you — with no credit-score impact. Want me to open the quick finance form, or connect you with a broker?";
+    else if(/broker|call|talk|human|phone|speak|contact/.test(q)) r="You can reach a real EasyAsset broker on 1300 788 373, or I can book you a 15-minute chat. Which suits you?";
+    else if(/how|work|what.*do|help/.test(q)) r="Easy — tell me what you need (equipment, finance, or both), I gather a few details, and EasyAsset gets you competing options in one place. No obligation.";
+    else if(/^(hi|hey|hello|yo)\b/.test(q)) r="Hey! I can help you find equipment, get quotes, or arrange finance. What would you like to do?";
+    else r="I can help you source equipment, get competing supplier quotes, and arrange finance. Try one of the options above, or just tell me what you need.";
+    botSay(r, voiceMode); voiceMode=false;
+  }
+  function userSay(t){ addMsg(t,'user'); respond(t); }
+  function openW(){ root.classList.add('open'); if(!greeted){ greeted=true; botSay(root.dataset.greeting||"Hi, I'm Izzy — how can I help?"); } setTimeout(function(){ try{input.focus();}catch(e){} },260); }
+  function closeW(){ root.classList.remove('open'); }
+  btn.addEventListener('click', function(){ root.classList.contains('open')?closeW():openW(); });
+  closeBtn.addEventListener('click', closeW);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'&&root.classList.contains('open')) closeW(); });
+  form.addEventListener('submit', function(e){ e.preventDefault(); var v=input.value.trim(); if(!v) return; input.value=''; userSay(v); });
+  chips.addEventListener('click', function(e){ var c=e.target.closest('.izzy__chip'); if(!c) return; userSay(c.textContent.trim()); });
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition, rec=null;
+  function say(t){ try{ if('speechSynthesis' in window){ var u=new SpeechSynthesisUtterance(t.replace(/[^\x00-\x7F]/g,'')); u.rate=1.03; u.pitch=1.05; speechSynthesis.cancel(); speechSynthesis.speak(u);} }catch(e){} }
+  if(mic) mic.addEventListener('click', function(){
+    if(!SR){ botSay("🎙️ Live voice — 'Talk to Izzy' — is coming soon (works best in Chrome). For now, type your message and I'll help."); return; }
+    if(rec){ rec.stop(); return; }
+    voiceMode=true; rec=new SR(); rec.lang='en-AU'; rec.interimResults=false;
+    mic.classList.add('rec');
+    rec.onresult=function(ev){ userSay(ev.results[0][0].transcript); };
+    rec.onend=function(){ mic.classList.remove('rec'); rec=null; };
+    rec.onerror=function(){ mic.classList.remove('rec'); rec=null; voiceMode=false; };
+    try{ rec.start(); }catch(e){ mic.classList.remove('rec'); rec=null; }
+  });
 })();
 </script>
 </body>
